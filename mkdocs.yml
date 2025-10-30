@@ -1,0 +1,28 @@
+site_name: Bushbot
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - content.code.copy
+    - toc.integrate
+  palette:
+    primary: black
+    accent: amber
+markdown_extensions:
+  - admonition
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+nav:
+  - Home: index.md
+  - Getting Started: getting_started.md
+  - Hardware Setup: hardware_setup.md
+  - Electronics: electronics.md
+  - Software: software-setup.md
+  - Operation: operation.md
+  - Safety Manual: safety.md
+  - Troubleshooting: troubleshooting.md
+  - Maintenance: maintenance.md
+  - Appendix: appendix.md
