@@ -1,6 +1,6 @@
-# The BushBot Initiative
+# 🦘 The BushBot Initiative  
 
-Welcome to the **BushBot Initiative** — an AI-powered wildlife monitoring platform designed for the **non-intrusive observation** of Australian fauna.
+Welcome to the **BushBot Initiative** — an AI-powered wildlife monitoring platform designed for the **non-intrusive observation** of Australian fauna.  
 
 
 The system combines an intelligent **Raspberry Pi–based payload** (camera, microphone, and light sensor) with a **host PC** that performs real-time species detection, classification, and peripheral control. Together, they provide a compact, efficient, and environmentally conscious solution for wildlife research and education.
