@@ -1,16 +1,16 @@
-# 🧩 Software Setup
+# Software Setup
 
-This page explains how to install and configure all software components for both the **Raspberry Pi Zero 2 W** and the **Host Control PC**, preparing BushBot for its first run.
-
----
-
-## 🧠 Raspberry Pi Setup
-
-The Raspberry Pi controls onboard data acquisition, servo actuation, and AI inference.
+This section explains how to install and configure the software for both the **Raspberry Pi Zero 2 W** and the **Host Control PC**, preparing BushBot for its first run.
 
 ---
 
-### ⚙️ Step 1 – Flash the Project Image
+## Raspberry Pi Setup
+
+The Raspberry Pi handles onboard data acquisition, servo actuation, and communication with the host.
+
+---
+
+### Step 1 – Flash the Project Image
 
 1. Open **Raspberry Pi Imager** on your computer.  
 2. Select:  
@@ -18,7 +18,7 @@ The Raspberry Pi controls onboard data acquisition, servo actuation, and AI infe
    - **Choose Storage →** your microSD card  
 3. Click the ⚙️ **Advanced Options** icon and set:  
    - **Hostname:** `bushbot.local`  
-   - **Enable SSH:** checked, with a password  
+   - **Enable SSH:** checked with a password  
    - **Configure Wireless LAN:** enter SSID and password  
 4. Click **Write** and wait until the process completes.  
 5. Insert the card into the Pi and power it on.
@@ -29,11 +29,11 @@ The Raspberry Pi controls onboard data acquisition, servo actuation, and AI infe
 
 ---
 
-### 🔗 Step 2 – Clone the Repository
+### Step 2 – Clone the Repository
 
 After connecting the Pi to Wi-Fi:
 
-```bash
+```
 ssh admin@bushbot.local
 sudo apt update && sudo apt install git -y
 git clone git@github.com:kaladeens/e18.git
@@ -42,24 +42,24 @@ cd e18/rpi
 
 ---
 
-### 🧰 Step 3 – Install Dependencies
+### Step 3 – Install Dependencies
 
 Run the automated setup script:
 
-```bash
+```
 chmod +x setup.sh
 sudo ./setup.sh
 ```
 
-> The installation takes several minutes and reboots automatically when finished.
+> Installation may take several minutes and will reboot automatically when finished.
 
 ---
 
-### ▶️ Step 4 – Run the Main Application
+### Step 4 – Run the Main Application
 
 After reboot:
 
-```bash
+```
 ssh admin@bushbot.local
 cd e18/rpi
 ./run.sh
@@ -69,15 +69,15 @@ The Pi now begins streaming video, audio, and telemetry to the host PC.
 
 ---
 
-## 💻 Host Control PC Setup
+## Host Control PC Setup
 
 The host computer runs the GUI, AI models, and data logging.
 
 ---
 
-### 🧩 Step 1 – Environment Setup
+### Step 1 – Create and Activate a Virtual Environment
 
-```bash
+```
 cd e18/host
 python -m venv venv
 ```
@@ -89,29 +89,29 @@ Activate the environment:
   .\venv\Scripts\activate
   ```
 * **macOS / Linux**
-  ```bash
+  ```
   source venv/bin/activate
   ```
 
-Install the required packages:
+Install required packages:
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
 ---
 
-### 🪄 Step 2 – GStreamer (Windows Only)
+### Step 2 – Install GStreamer (Windows Only)
 
 1. Install [MSYS2](https://www.msys2.org/).  
 2. Open **MSYS2 MSYS** and run:  
-   ```bash
+   ```
    pacman -Syu
    pacman -Su
    pacman -S mingw-w64-x86_64-toolchain mingw-w64-x86_64-gstreamer mingw-w64-x86_64-gst-plugins-base mingw-w64-x86_64-pkg-config
    ```
 3. Launch *MINGW64* terminal → navigate to your project → activate venv → run:  
-   ```bash
+   ```
    pip install PyGObject
    ```
 4. Add to System Path: `C:\msys64\mingw64\bin`  
@@ -119,26 +119,26 @@ pip install -r requirements.txt
 
 ---
 
-### 🖥️ Step 3 – Launch the GUI
+### Step 3 – Launch the GUI
 
-```bash
+```
 cd e18/host/bushbot_gui_v2
 python gui_main.py
 ```
 
-If configured correctly, the GUI will connect automatically and display live video and audio feeds.
+If configured correctly, the GUI connects automatically and displays live video and audio feeds.
 
 ---
 
-### 🏗️ Step 4 – Optional Executable Build
+### Step 4 – Optional Executable Build
 
-```bash
+```
 pyinstaller --noconsole --icon=icons/in.ico gui_main.py
 ```
 
 ---
 
-## 📦 Dependency Overview
+## Dependency Overview
 
 | Library | Purpose |
 |:--|:--|
@@ -156,7 +156,7 @@ pyinstaller --noconsole --icon=icons/in.ico gui_main.py
 
 ---
 
-## ⚖️ Licensing & Attribution
+## Licensing and Attribution
 
 BushBot software is released under the **MIT License**.  
 Third-party dependencies retain their respective open-source licenses (Apache 2.0, MIT, BSD).  
@@ -164,7 +164,7 @@ Ensure compliance when redistributing modified builds.
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 - [Operation](operation.md) – Daily usage & control modes  
 - [Troubleshooting](troubleshooting.md) – Common issues and fixes  
 - [Safety Manual](safety.md) – PPE & emergency response
