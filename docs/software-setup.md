@@ -1,5 +1,15 @@
 # Software Setup
 
+!!! danger "⚠️ Critical Setup Notice"
+    This guide includes several **interdependent steps** that must be followed **in order**.  
+    Skipping or performing steps incorrectly (e.g., not using the right terminal, or forgetting to activate your Python virtual environment) will cause the **build to fail** or the **GUI to malfunction**.  
+
+    ✅ **Before starting, ensure that:**
+    - You have installed **Python 3.11 or newer**  
+    - You are connected to a **stable Wi-Fi network**  
+    - You have the **BushBot repository cloned** or available via GitHub  
+    - You have **admin privileges** to install packages on both systems  
+
 This section explains how to install and configure the software for both the **Raspberry Pi Zero 2 W** and the **Host Control PC**, preparing BushBot for its first run.
 
 ---
@@ -12,29 +22,39 @@ The Raspberry Pi handles onboard data acquisition, servo actuation, and communic
 
 ### Step 1 – Flash the Project Image
 
-1. Open **Raspberry Pi Imager** on your computer.  
-2. Select:  
-   - **Choose OS → Use Custom Image → bushbot.img**  
-   - **Choose Storage →** your microSD card  
-3. Click the ⚙️ **Advanced Options** icon and set:  
-   - **Hostname:** `bushbot.local`  
-   - **Enable SSH:** checked with a password  
-   - **Configure Wireless LAN:** enter SSID and password  
-4. Click **Write** and wait until the process completes.  
-5. Insert the card into the Pi and power it on.
+Open **Raspberry Pi Imager** on your computer.
+
+Select the following options:  
+ • **Choose OS → Use Custom Image → `bushbot.img`**  
+ • **Choose Storage →** your microSD card  
+
+Click the ⚙️ **Advanced Options** icon and set:  
+ • **Hostname:** `bushbot.local`  
+ • **Enable SSH:** ✔ (checked) with a password  
+ • **Configure Wireless LAN:** enter your **SSID** and **password**  
+
+Click **Write**, then wait until the process completes.  
+
+Safely eject the card, insert it into the Pi, and power on.
+
 
 !!! warning "First Boot Notice"
     The onboard LED will flash during startup.  
     **Do not disconnect power** until it stops flashing.
 
 ---
-
 ### Step 2 – Clone the Repository
 
-After connecting the Pi to Wi-Fi:
+Most **BushBot project images** come with the repository and dependencies already pre-installed.  
+However, if you are using a fresh or custom image, follow these steps to clone the project manually.
+
+!!! note "When to Use This Step"
+    You only need to perform this step if the `e18` folder is **not** already present in your home directory on the Pi.
+
+To connect and clone the repository:
 
 ```
-ssh admin@bushbot.local
+ssh username@bushbot.local
 sudo apt update && sudo apt install git -y
 git clone git@github.com:kaladeens/e18.git
 cd e18/rpi
@@ -44,23 +64,23 @@ cd e18/rpi
 
 ### Step 3 – Install Dependencies
 
-Run the automated setup script:
+The default **BushBot image** includes all required packages and services.  
+If you are using a minimal or custom build, you can manually install all dependencies using the setup script below:
 
 ```
 chmod +x setup.sh
 sudo ./setup.sh
 ```
 
-> Installation may take several minutes and will reboot automatically when finished.
-
----
+!!! info "Setup Duration"
+    Installation may take several minutes and will automatically reboot the Pi when complete.
 
 ### Step 4 – Run the Main Application
 
 After reboot:
 
 ```
-ssh admin@bushbot.local
+ssh username@bushbot.local
 cd e18/rpi
 ./run.sh
 ```
@@ -74,6 +94,13 @@ The Pi now begins streaming video, audio, and telemetry to the host PC.
 The host computer runs the GUI, AI models, and data logging.
 
 ---
+!!! tip "Using the Prebuilt Executable"
+
+    If you only plan to **run** BushBot and not modify the source code, you can skip the build steps.
+
+    - Simply use the **prebuilt executable** (`bushbot_gui.exe`) provided with the release package.
+    - No Python, MSYS2, or GStreamer setup is required for normal operation.
+
 
 ### Step 1 – Create and Activate a Virtual Environment
 
@@ -103,21 +130,83 @@ pip install -r requirements.txt
 
 ### Step 2 – Install GStreamer (Windows Only)
 
-1. Install [MSYS2](https://www.msys2.org/).  
-2. Open **MSYS2 MSYS** and run:  
-   ```
-   pacman -Syu
-   pacman -Su
-   pacman -S mingw-w64-x86_64-toolchain mingw-w64-x86_64-gstreamer mingw-w64-x86_64-gst-plugins-base mingw-w64-x86_64-pkg-config
-   ```
-3. Launch *MINGW64* terminal → navigate to your project → activate venv → run:  
-   ```
-   pip install PyGObject
-   ```
-4. Add to System Path: `C:\msys64\mingw64\bin`  
-5. Restart VS Code or your terminal.
+!!! danger "⚠️ GStreamer Setup – High Failure Risk"
+    This section must be done **exactly as described** — using the wrong terminal or skipping environment activation will **break the GUI build**.  
+    - Use the **MSYS2 MinGW 64-bit** terminal (**purple prompt**, starts with `MINGW64`), not PowerShell or CMD, when specified.  
+    - Ensure your **virtual environment is activated** (`(venv)` visible before your prompt).  
+    - If you miss either condition, **PyGObject will not install**, and video streaming will fail.
 
 ---
+
+#### Install MSYS2 and Update Core Packages
+
+- Download and install **[MSYS2](https://www.msys2.org/)** (use default settings).  
+- Open the **MSYS2 MSYS** terminal (blue icon in Start Menu).  
+- Run the following commands one at a time:
+
+```
+pacman -Syu
+# If prompted, close and reopen the terminal, then:
+pacman -Su
+```
+
+---
+
+#### Install GStreamer and Build Tools
+
+In the **MSYS2 MSYS** terminal, install all required components:
+
+```
+pacman -S mingw-w64-x86_64-toolchain \
+          mingw-w64-x86_64-gstreamer \
+          mingw-w64-x86_64-gst-plugins-base \
+          mingw-w64-x86_64-pkg-config
+```
+
+---
+
+#### Build Python Bindings
+
+- Open the **MSYS2 MinGW 64-bit** terminal (purple icon).  
+- Navigate to your project directory and activate your virtual environment:
+
+```
+cd /c/Users/YourUsername/Desktop/e18/host
+source venv/Scripts/activate
+pip install PyGObject
+```
+
+!!! warning
+    Ensure `(venv)` appears before your prompt — if not, stop and rerun the activation command.  
+    PyGObject **will fail to install** if this step is skipped or run in the wrong terminal.
+
+---
+
+#### Configure System Path
+
+Add the GStreamer binaries to your Windows PATH:
+
+```
+C:\msys64\mingw64\bin
+```
+
+**Steps:**
+- Open **Control Panel → System → Advanced System Settings → Environment Variables**  
+- Under **System Variables**, select `Path → Edit → New`  
+- Paste the above path and click **OK**  
+- Restart VS Code or any open terminals.
+
+---
+
+#### Verify the Installation
+
+Run the following command to confirm the binding works:
+
+```
+python -c "import gi; print('PyGObject OK')"
+```
+
+If the message `PyGObject OK` appears, your setup was successful.
 
 ### Step 3 – Launch the GUI
 
@@ -130,31 +219,66 @@ If configured correctly, the GUI connects automatically and displays live video 
 
 ---
 
-### Step 4 – Optional Executable Build
+<!-- Two-column dependency tables (responsive) -->
+<style>
+  .deps-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+  .deps-grid h3{ margin: .25rem 0 .5rem; }
+  .deps-grid table{ width:100%; border-collapse:collapse; }
+  .deps-grid th, .deps-grid td{
+    padding:6px 10px;
+    border-bottom:1px solid var(--md-typeset-table-color, #e0e0e0);
+    vertical-align: top;
+  }
+  .deps-grid thead th{ text-align:left; }
+</style>
 
-```
-pyinstaller --noconsole --icon=icons/in.ico gui_main.py
-```
+<div class="deps-grid">
 
----
+  <div>
+    <h3>💻 Host Control PC Dependencies</h3>
+    <table>
+      <thead>
+        <tr><th>Library</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>aiohttp 3.12.15</strong></td><td>Async network communication</td></tr>
+        <tr><td><strong>opencv-python 4.12.0.88</strong></td><td>Computer vision</td></tr>
+        <tr><td><strong>PyQt6 6.9.1 / pyqt6-sip 13.10.2</strong></td><td>GUI framework</td></tr>
+        <tr><td><strong>requests 2.32.5</strong></td><td>HTTP requests</td></tr>
+        <tr><td><strong>sounddevice 0.5.2</strong></td><td>Audio output</td></tr>
+        <tr><td><strong>panns-inference 0.1.1</strong></td><td>Audio event detection</td></tr>
+        <tr><td><strong>ultralytics 8.3.204</strong></td><td>YOLO vision model</td></tr>
+        <tr><td><strong>torch / torchaudio / torchcodec</strong></td><td>Deep learning backend</td></tr>
+        <tr><td><strong>pandas 2.3.3</strong></td><td>Data logging and analysis</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-## Dependency Overview
+  <div>
+    <h3>🐧 Raspberry Pi Payload Dependencies</h3>
+    <table>
+      <thead>
+        <tr><th>Library</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>av 11.0.0</strong></td><td>Lightweight video decoding for Pi</td></tr>
+        <tr><td><strong>gpiozero 2.0.1</strong></td><td>GPIO control for servos and peripherals</td></tr>
+        <tr><td><strong>numpy &lt;2</strong></td><td>Core numerical operations</td></tr>
+        <tr><td><strong>picamera2 0.3.30</strong></td><td>Camera interface and streaming</td></tr>
+        <tr><td><strong>psutil 7.0.0</strong></td><td>System resource monitoring</td></tr>
+        <tr><td><strong>sounddevice 0.5.2</strong></td><td>Audio capture for Pi mic</td></tr>
+        <tr><td><strong>spidev 3.7</strong></td><td>SPI communication for sensors</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-| Library | Purpose |
-|:--|:--|
-| **aiohttp 3.12.15** | Async network communication |
-| **av 15.1.0** | Audio/Video decoding |
-| **numpy 2.2.6** | Core numerical operations |
-| **opencv-python 4.12.0.88** | Computer vision |
-| **PyQt6 6.9.1 / pyqt6-sip 13.10.2** | GUI framework |
-| **requests 2.32.5** | HTTP requests |
-| **sounddevice 0.5.2** | Microphone capture |
-| **panns-inference 0.1.1** | Audio event detection |
-| **ultralytics 8.3.204** | YOLO vision model |
-| **torch / torchaudio / torchcodec** | Deep learning backend |
-| **pandas 2.3.3** | Data logging and analysis |
+</div>
 
----
+
 
 ## Licensing and Attribution
 
