@@ -18,9 +18,9 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started: getting_started.md
+  - Software: software-setup.md
   - Hardware Setup: hardware_setup.md
   - Electronics: electronics.md
-  - Software: software-setup.md
   - Operation: operation.md
   - Safety Manual: safety.md
   - Troubleshooting: troubleshooting.md
