@@ -22,7 +22,8 @@ The Raspberry Pi handles onboard data acquisition, servo actuation, and communic
 
 ### Step 1 – Flash the Project Image
 
-Open **Raspberry Pi Imager** on your computer.
+The BushBot image is built on **Raspberry Pi OS Lite (Bookworm, 32-bit)**, optimised for the limited memory of the Pi Zero 2 W.  
+You do not need to install a separate operating system — simply write the provided image file (`bushbot.img`) using **Raspberry Pi Imager**.
 
 Select the following options:  
  • **Choose OS → Use Custom Image → `bushbot.img`**  
@@ -54,10 +55,10 @@ However, if you are using a fresh or custom image, follow these steps to clone t
 To connect and clone the repository:
 
 ```
-ssh username@bushbot.local
+ssh {username}@bushbot.local
 sudo apt update && sudo apt install git -y
 git clone git@github.com:kaladeens/e18.git
-cd e18/rpi
+cd /path/to/e18/rpi
 ```
 
 ---
@@ -80,13 +81,20 @@ sudo ./setup.sh
 After reboot:
 
 ```
-ssh username@bushbot.local
-cd e18/rpi
-./run.sh
+ssh {username}@bushbot.local
+cd /path/to/e18/rpi
+chmod +x run.sh
+sudo ./run.sh
 ```
 
 The Pi now begins streaming video, audio, and telemetry to the host PC.
 
+!!! info "Network Handling"
+    On first boot, the Pi will attempt to establish a **self-assigned static IP** to maintain a stable connection with the host system.  
+    This is designed to make the network link more robust and prevent address conflicts during field operation.  
+
+    In rare cases where the static IP overlaps with another device on the network, the connection may fail.  
+    If this occurs, you can modify the assigned address in the **host-side configuration file** before launching the GUI.
 ---
 
 ## Host Control PC Setup
@@ -105,7 +113,7 @@ The host computer runs the GUI, AI models, and data logging.
 ### Step 1 – Create and Activate a Virtual Environment
 
 ```
-cd e18/host
+cd /path/to/e18/host
 python -m venv venv
 ```
 
@@ -171,7 +179,7 @@ pacman -S mingw-w64-x86_64-toolchain \
 - Navigate to your project directory and activate your virtual environment:
 
 ```
-cd /c/Users/YourUsername/Desktop/e18/host
+cd /c/Users/YourUsername/path/to/e18/host
 source venv/Scripts/activate
 pip install PyGObject
 ```
@@ -211,7 +219,7 @@ If the message `PyGObject OK` appears, your setup was successful.
 ### Step 3 – Launch the GUI
 
 ```
-cd e18/host/bushbot_gui_v2
+cd /path/to/e18/host/bushbot_gui_v2
 python gui_main.py
 ```
 

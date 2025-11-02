@@ -113,34 +113,49 @@ To start up BushBot:
 On first boot, the Pi will automatically join your configured Wi-Fi network.  
 You can then connect from the host PC using:
 ```
-ssh admin@bushbot.local
+ssh {username}@bushbot.local
 ```
 
 ---
+## 🚀 Quick Start (Pre-Built System)
 
-## Initial Software Launch
+If you are **not developing or rebuilding from source**, and simply want to **run the standard BushBot system**, follow this minimal setup procedure.
 
-Once both the **Raspberry Pi** and **Host PC** are powered and connected:
+Once both the **Raspberry Pi Zero 2 W** and the **Host Control PC** are powered on and connected to the same Wi-Fi network:
 
-1. **On the Pi** (via SSH or terminal):  
-    Navigate to the project folder and run the setup script to install dependencies and configure services.  
-    ```
-    cd ~/e18/rpi
-    ./setup.sh
-    ```
-
+1. **On the Raspberry Pi** (via SSH or direct terminal):  
+   Navigate to the project directory and start the setup sequence.  
+```
+cd path/to/e18/rpi
+sudo ./setup.sh
+# After the automatic reboot:
+sudo ./run.sh
+```
 2. **On the Host PC:**  
-    Launch the graphical control interface.  
-    ```
-    cd ~/e18/host/bushbot_gui_v2
-    python gui_main.py
-    ```
+   Launch the graphical control interface.  
+```
+cd path/to/e18/host/bushbot_gui_v2
+bushbot_gui.exe
+```
 
-If both systems are configured correctly (as described in [Software Setup](software-setup.md)), the GUI will display live video and audio streams once the Pi begins broadcasting.  
+If both systems were flashed and configured using the provided **BushBot image** and **release package**, no additional installation is required.  
+Within a few seconds of startup, the **GUI will automatically connect** and display live video, audio, and telemetry streams from the Pi.
 
 ---
 
+### ⚙️ For Advanced Users
+
+If you plan to **build BushBot from source**, modify dependencies, or run a custom configuration,  
+refer to the detailed instructions in [Software Setup](software-setup.md).
+
+That section covers:
+- Flashing and configuring a **fresh Raspberry Pi OS Lite (32-bit, Bookworm)** image  
+- Setting up a **Python virtual environment** for the host  
+- Installing **GStreamer**, **PyGObject**, and all development dependencies  
+- Building the GUI and services manually for full control over the system
+
 ## Next Steps
-- For detailed dependency setup, see [Software Setup](software-setup.md).  
 - For troubleshooting connection or power issues, see [Troubleshooting](troubleshooting.md).  
 - For daily use and operational modes, see [Operation](operation.md).
+- For detailed dependency overview and setup, see [Software Setup](software-setup.md).  
+
