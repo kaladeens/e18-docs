@@ -168,8 +168,13 @@ In the **MSYS2 MSYS** terminal, install all required components:
 pacman -S mingw-w64-x86_64-toolchain \
           mingw-w64-x86_64-gstreamer \
           mingw-w64-x86_64-gst-plugins-base \
-          mingw-w64-x86_64-pkg-config
+          mingw-w64-x86_64-pkg-config \
+          mingw-w64-x86_64-ffmpeg
 ```
+
+!!! info "Why FFmpeg?"
+    FFmpeg provides codecs and media processing utilities required by GStreamer, OpenCV, and PyAV.  
+    Without it, the GUI may fail to play audio/video or save recordings properly.
 
 ---
 
