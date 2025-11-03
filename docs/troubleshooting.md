@@ -71,3 +71,5 @@ pip install PyGObject
 ```
 
 After completing these steps, repeat **Section 2 – GStreamer Installation** in [Software Setup](software-setup.md).
+
+!!! wiring is a big issie //camera issues

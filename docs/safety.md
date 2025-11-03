@@ -63,5 +63,5 @@ To ensure safe, consistent, and responsible use of the BushBot system in laborat
 
 1. From the GUI, click **Stop Stream** to end all processes.  
 2. SSH into the Pi and execute:
-   ```bash
+   ```
    sudo shutdown now

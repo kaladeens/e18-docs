@@ -81,6 +81,7 @@ sudo ./setup.sh
 After reboot:
 
 ```
+# connect from your pc 
 ssh {username}@bushbot.local
 cd /path/to/e18/rpi
 chmod +x run.sh
@@ -89,7 +90,7 @@ sudo ./run.sh
 
 The Pi now begins streaming video, audio, and telemetry to the host PC.
 
-!!! info "Network Handling"
+!!! danger "Network Handling"
     On first boot, the Pi will attempt to establish a **self-assigned static IP** to maintain a stable connection with the host system.  
     This is designed to make the network link more robust and prevent address conflicts during field operation.  
 

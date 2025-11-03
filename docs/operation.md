@@ -20,7 +20,7 @@ Displays real-time footage captured from the Pi camera.
 Plays sound directly from the onboard microphone.  
 
 **🧠 AI Detection Modules**  
-- Object detection via **YOLOv8**, which identifies and labels animals within the camera frame.  
+- Object detection via **YOLOv11**, which identifies and labels animals within the camera frame.  
 - Environmental audio classification using **PANNs-inference**, which identifies animal calls and notable acoustic events.  
 
 **📈 Telemetry Monitor**  
@@ -54,8 +54,10 @@ If the payload is mounted on a mobile base, motion can be controlled directly vi
 | **W / A / S / D** | Move forward, left, backward, right |
 | **Q / E** | Increase / Decrease maximum movement speed |
 | **V** | Emergency stop |
-| **R / F** | Adjust servo tilt (−45° to +45°) |
+| **R / F** | Adjust servo tilt (−30° to +30°) |
 | **IR Filter Toggle** | Switch between filtered and unfiltered (manual mode) |
+
+### Manual Commands
 
 All control commands are sent asynchronously to ensure smooth, low-latency response.
 
@@ -101,8 +103,8 @@ Both the **Raspberry Pi** and **Host PC** maintain detailed runtime logs and dat
   - AI model initialisation and sensor startup  
   - Reconnect attempts and recovery notifications  
 - Logs are timestamped and stored locally on both devices:
-  - **Raspberry Pi:** `/home/pi/e18/rpi/logs/`  
-  - **Host PC:** `e18/host/logs/`
+  - **Raspberry Pi:** `/path/to/e18/rpi/logs/`  
+  - **Host PC:** `/path/to/e18/host/logs/`
 
 **🎬 Data Recording Mode**  
 The GUI provides a **Start Recording** button to capture a complete observation session:  
