@@ -1,0 +1,561 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../safety/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Troubleshooting - Bushbot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bushbot" class="md-header__button md-logo" aria-label="Bushbot" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bushbot
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bushbot" class="md-nav__button md-logo" aria-label="Bushbot" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bushbot
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Software Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../electronics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Electronics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Safety Manual
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h1>
+<p>Common issues, causes, and quick fixes for the BushBot system.<br />
+If problems persist, <strong>repeat the full <a href="../software-setup/">Software Setup</a></strong> process to ensure all dependencies and environment paths are correctly configured.</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>🧩 <strong>Problem</strong></th>
+<th>⚙️ <strong>Possible Cause</strong></th>
+<th>🧭 <strong>Solution</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No video feed from payload</strong></td>
+<td>Camera not detected or not initialised</td>
+<td>Check ribbon cable connection, reboot the Pi, and confirm camera is enabled in <code>/boot/config.txt</code>.</td>
+</tr>
+<tr>
+<td><strong>GUI fails to connect to payload</strong></td>
+<td>Wrong IP address or hostname</td>
+<td>Verify that you can ping the Pi (<code>ping bushbot.local</code> or <code>ping 192.168.x.x</code>). Update the host IP in the GUI or <code>constants.py</code>.</td>
+</tr>
+<tr>
+<td><strong>No audio stream or missing sound</strong></td>
+<td>Microphone not detected or device name mismatch</td>
+<td>Confirm mic is connected. If using a new USB mic, edit <code>AUDIO_DEVICE_NAME</code> in <code>constants.py</code> to match the detected device (<code>arecord -l</code> to list).</td>
+</tr>
+<tr>
+<td><strong>Audio delay or stuttering</strong></td>
+<td>Network latency or buffer mismatch</td>
+<td>Use a lower resolution or shorter buffer in the GStreamer pipeline; check Wi-Fi stability.</td>
+</tr>
+<tr>
+<td><strong>No AI detections appear</strong></td>
+<td>Model weights missing or wrong path</td>
+<td>Verify <code>weights/</code> folder exists and that YOLOv8 and PANNs models were downloaded.</td>
+</tr>
+<tr>
+<td><strong><code>ModuleNotFoundError</code> or Python package missing</strong></td>
+<td>Virtual environment not activated</td>
+<td>Activate the venv before running the app: <br> <code>source venv/bin/activate</code> (Linux/macOS) or <code>.\venv\Scripts\activate</code> (Windows).</td>
+</tr>
+<tr>
+<td><strong>PyGObject installation failed</strong></td>
+<td>Not running in the correct terminal</td>
+<td>Ensure commands are executed inside the <strong>MSYS2 MinGW 64-bit</strong> terminal, not PowerShell or CMD. Re-install following <a href="../software-setup/">Software Setup</a>.</td>
+</tr>
+<tr>
+<td><strong>GStreamer not found / “not in PATH” error</strong></td>
+<td>PATH variable not updated</td>
+<td>Add <code>C:\msys64\mingw64\bin</code> to the <strong>System Path</strong> environment variable and restart your terminal or VS Code.</td>
+</tr>
+<tr>
+<td><strong><code>pkg-config</code> or compiler errors during install</strong></td>
+<td>Incomplete MSYS2 setup</td>
+<td>Re-run the MSYS2 setup and package installation section from <a href="../software-setup/">Software Setup</a>.</td>
+</tr>
+<tr>
+<td><strong>GUI opens but window stays blank</strong></td>
+<td>Missing dependencies or mismatch between Python version and PyQt</td>
+<td>Ensure Python ≥3.11 and reinstall dependencies: <code>pip install -r requirements.txt</code>.</td>
+</tr>
+<tr>
+<td><strong>Pi does not auto-reconnect after disconnect</strong></td>
+<td>Network drop or static IP conflict</td>
+<td>Ensure both host and Pi are on the same Wi-Fi. Restart both devices if necessary.</td>
+</tr>
+<tr>
+<td><strong>Host or Pi logs show repeated reconnect attempts</strong></td>
+<td>IP mismatch or hostname not resolving</td>
+<td>Edit the IP in <code>constants.py</code> to match the Pi’s assigned address.</td>
+</tr>
+<tr>
+<td><strong>Recording button unresponsive or missing outputs</strong></td>
+<td>FFmpeg not installed correctly</td>
+<td>Reinstall FFmpeg</td>
+</tr>
+<tr>
+<td><strong>Executable fails to launch</strong></td>
+<td>Missing system DLLs or incomplete PyInstaller build</td>
+<td>Rebuild using the same environment with: <br> <code>pyinstaller --noconsole --icon=icons/in.ico gui_main.py</code>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">General Fix</p>
+</div>
+<p>If you encounter repeated issues with dependencies, terminal errors, or broken imports —<br />
+<strong>re-run the entire <a href="../software-setup/">Software Setup</a></strong> guide step-by-step.<br />
+Most problems are caused by skipped setup commands, wrong terminals, or missing environment variables.</p>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Quick Diagnostic Commands</p>
+</div>
+<p>Use these commands to verify core components:</p>
+<pre><code class="language-bash"># Check connected audio devices
+arecord -l
+
+# Confirm camera module is detected
+libcamera-hello --list-cameras
+
+# Verify Python environment and path
+python --version
+which python
+
+# Test if GUI can reach payload
+ping bushbot.local
+</code></pre>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Rebuilding MSYS2 Environment (Windows Only)</p>
+</div>
+<p>If GStreamer or PyGObject installation fails repeatedly,<br />
+open <strong>MSYS2 MSYS</strong> terminal and reset the environment:</p>
+<pre><code class="language-bash">pacman -Syu
+pacman -S mingw-w64-x86_64-toolchain \
+          mingw-w64-x86_64-gstreamer \
+          mingw-w64-x86_64-gst-plugins-base \
+          mingw-w64-x86_64-pkg-config
+</code></pre>
+<p>Then open <strong>MSYS2 MinGW 64-bit</strong> terminal and reinstall Python bindings:</p>
+<pre><code class="language-bash">source venv/Scripts/activate
+pip install PyGObject
+</code></pre>
+<p>After completing these steps, repeat <strong>Section 2 – GStreamer Installation</strong> in <a href="../software-setup/">Software Setup</a>.</p>
+<p>!!! wiring is a big issie //camera issues</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
