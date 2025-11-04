@@ -391,98 +391,105 @@ If problems persist, <strong>repeat the full <a href="../software-setup/">Softwa
 <tr>
 <td><strong>No video feed from payload</strong></td>
 <td>Camera not detected or not initialised</td>
-<td>Check ribbon cable connection, reboot the Pi, and confirm camera is enabled in <code>/boot/config.txt</code>.</td>
+<td>Check ribbon cable connection, reboot the Pi, and confirm the camera is enabled in <code>/boot/config.txt</code>.</td>
 </tr>
 <tr>
 <td><strong>GUI fails to connect to payload</strong></td>
 <td>Wrong IP address or hostname</td>
-<td>Verify that you can ping the Pi (<code>ping bushbot.local</code> or <code>ping 192.168.x.x</code>). Update the host IP in the GUI or <code>constants.py</code>.</td>
+<td>Verify connection with <code>ping bushbot.local</code> or <code>ping 192.168.x.x</code>. Update the host IP in the GUI or <code>constants.py</code>.</td>
 </tr>
 <tr>
 <td><strong>No audio stream or missing sound</strong></td>
-<td>Microphone not detected or device name mismatch</td>
-<td>Confirm mic is connected. If using a new USB mic, edit <code>AUDIO_DEVICE_NAME</code> in <code>constants.py</code> to match the detected device (<code>arecord -l</code> to list).</td>
+<td>Microphone not detected or incorrect device name</td>
+<td>Check physical mic connection. If using a new USB mic, update <code>AUDIO_DEVICE_NAME</code> in <code>constants.py</code> to match the detected device (<code>arecord -l</code> to list).</td>
 </tr>
 <tr>
 <td><strong>Audio delay or stuttering</strong></td>
 <td>Network latency or buffer mismatch</td>
-<td>Use a lower resolution or shorter buffer in the GStreamer pipeline; check Wi-Fi stability.</td>
+<td>Use a lower video resolution or shorter audio buffer in the GStreamer pipeline. Check Wi-Fi signal strength and stability.</td>
 </tr>
 <tr>
 <td><strong>No AI detections appear</strong></td>
-<td>Model weights missing or wrong path</td>
-<td>Verify <code>weights/</code> folder exists and that YOLOv8 and PANNs models were downloaded.</td>
+<td>Missing or incorrect model paths</td>
+<td>Confirm the YOLOv11s and PANNs model weights are present in the <code>models/</code> folder.</td>
 </tr>
 <tr>
-<td><strong><code>ModuleNotFoundError</code> or Python package missing</strong></td>
+<td><strong><code>ModuleNotFoundError</code> or package import failure</strong></td>
 <td>Virtual environment not activated</td>
-<td>Activate the venv before running the app: <br> <code>source venv/bin/activate</code> (Linux/macOS) or <code>.\venv\Scripts\activate</code> (Windows).</td>
+<td>Activate the venv before running: <code>source venv/bin/activate</code> (Linux/macOS) or <code>.\venv\Scripts\activate</code> (Windows).</td>
 </tr>
 <tr>
 <td><strong>PyGObject installation failed</strong></td>
-<td>Not running in the correct terminal</td>
-<td>Ensure commands are executed inside the <strong>MSYS2 MinGW 64-bit</strong> terminal, not PowerShell or CMD. Re-install following <a href="../software-setup/">Software Setup</a>.</td>
+<td>Command executed in the wrong terminal</td>
+<td>Run the setup inside the <strong>MSYS2 MinGW 64-bit</strong> terminal, not PowerShell or CMD. Then re-run <a href="../software-setup/">Software Setup</a>.</td>
 </tr>
 <tr>
-<td><strong>GStreamer not found / “not in PATH” error</strong></td>
-<td>PATH variable not updated</td>
-<td>Add <code>C:\msys64\mingw64\bin</code> to the <strong>System Path</strong> environment variable and restart your terminal or VS Code.</td>
+<td><strong>GStreamer not found / “not in PATH”</strong></td>
+<td>Environment variable not updated</td>
+<td>Add <code>C:\msys64\mingw64\bin</code> to the Windows <strong>System Path</strong> and restart VS Code or your terminal.</td>
 </tr>
 <tr>
-<td><strong><code>pkg-config</code> or compiler errors during install</strong></td>
-<td>Incomplete MSYS2 setup</td>
-<td>Re-run the MSYS2 setup and package installation section from <a href="../software-setup/">Software Setup</a>.</td>
+<td><strong><code>pkg-config</code> or compiler errors</strong></td>
+<td>Incomplete MSYS2 installation</td>
+<td>Re-install build tools and packages following <a href="../software-setup/">Software Setup</a>.</td>
 </tr>
 <tr>
-<td><strong>GUI opens but window stays blank</strong></td>
-<td>Missing dependencies or mismatch between Python version and PyQt</td>
-<td>Ensure Python ≥3.11 and reinstall dependencies: <code>pip install -r requirements.txt</code>.</td>
+<td><strong>GUI opens but screen stays blank</strong></td>
+<td>Dependency mismatch or missing Qt module</td>
+<td>Ensure Python ≥3.11, then reinstall dependencies with <code>pip install -r requirements.txt</code>.</td>
 </tr>
 <tr>
-<td><strong>Pi does not auto-reconnect after disconnect</strong></td>
+<td><strong>Pi fails to reconnect after disconnect</strong></td>
 <td>Network drop or static IP conflict</td>
-<td>Ensure both host and Pi are on the same Wi-Fi. Restart both devices if necessary.</td>
+<td>Make sure both host and Pi are on the same Wi-Fi network. Reboot both if necessary.</td>
 </tr>
 <tr>
 <td><strong>Host or Pi logs show repeated reconnect attempts</strong></td>
-<td>IP mismatch or hostname not resolving</td>
-<td>Edit the IP in <code>constants.py</code> to match the Pi’s assigned address.</td>
+<td>IP mismatch or DNS resolution error</td>
+<td>Edit the host IP in <code>constants.py</code> to match the Pi’s assigned address.</td>
 </tr>
 <tr>
 <td><strong>Recording button unresponsive or missing outputs</strong></td>
 <td>FFmpeg not installed correctly</td>
-<td>Reinstall FFmpeg</td>
+<td>Reinstall <strong>FFmpeg</strong> for Windows (via MSYS2 or prebuilt binary) and restart the GUI.</td>
 </tr>
 <tr>
-<td><strong>Executable fails to launch</strong></td>
-<td>Missing system DLLs or incomplete PyInstaller build</td>
-<td>Rebuild using the same environment with: <br> <code>pyinstaller --noconsole --icon=icons/in.ico gui_main.py</code>.</td>
+<td><strong>Sensors or motors not responding</strong></td>
+<td>Wiring or pin mismatch</td>
+<td>Double-check all GPIO connections. Refer to <a href="../electronics/">electronics.md</a> for correct pin assignments.</td>
+</tr>
+<tr>
+<td><strong>Camera or LDR not working properly</strong></td>
+<td>Incorrect SPI or CSI wiring</td>
+<td>Inspect the camera ribbon orientation and ADC wiring for the LDR. Refer to <a href="../electronics/">electronics.md</a> for the exact SPI pin map.</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <div class="admonition tip">
 <p class="admonition-title">General Fix</p>
+<p>If you encounter repeated errors, dependency issues, or broken imports —  <strong>re-run the entire <a href="../software-setup/">Software Setup</a></strong> guide step-by-step. Most problems are caused by skipped commands, incorrect terminals, or missing environment variables.</p>
 </div>
-<p>If you encounter repeated issues with dependencies, terminal errors, or broken imports —<br />
-<strong>re-run the entire <a href="../software-setup/">Software Setup</a></strong> guide step-by-step.<br />
-Most problems are caused by skipped setup commands, wrong terminals, or missing environment variables.</p>
 <hr />
 <div class="admonition info">
 <p class="admonition-title">Quick Diagnostic Commands</p>
 </div>
-<p>Use these commands to verify core components:</p>
-<pre><code class="language-bash"># Check connected audio devices
+<p><strong>On the Raspberry Pi</strong></p>
+<pre><code class="language-bash">source /path/to/rpi/venv/bin/activate
+python utils.py  # Run system diagnostics
+
+# List connected audio devices
 arecord -l
 
-# Confirm camera module is detected
+# Confirm camera module
 libcamera-hello --list-cameras
 
-# Verify Python environment and path
+# Verify Python environment
 python --version
 which python
-
-# Test if GUI can reach payload
+</code></pre>
+<p><strong>On the Host Pc</strong></p>
+<pre><code class="language-bash"># Test if GUI can reach payload
 ping bushbot.local
 </code></pre>
 <hr />
@@ -502,7 +509,6 @@ pacman -S mingw-w64-x86_64-toolchain \
 pip install PyGObject
 </code></pre>
 <p>After completing these steps, repeat <strong>Section 2 – GStreamer Installation</strong> in <a href="../software-setup/">Software Setup</a>.</p>
-<p>!!! wiring is a big issie //camera issues</p>
 
 
 

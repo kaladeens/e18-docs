@@ -391,27 +391,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-safe-startup-procedure" class="md-nav__link">
+  <a href="#4-electrical-safety-and-handling" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Safe Startup Procedure
+      4. Electrical Safety and Handling
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-normal-operation-guidelines" class="md-nav__link">
+  <a href="#5-safe-startup-procedure" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Normal Operation Guidelines
+      5. Safe Startup Procedure
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-shutdown-procedure" class="md-nav__link">
+  <a href="#6-normal-operation-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Shutdown Procedure
+      6. Normal Operation Guidelines
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-shutdown-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Shutdown Procedure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-emergency-and-fault-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Emergency and Fault Response
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Maintenance
     </span>
   </a>
   
@@ -493,18 +520,19 @@ All users must read this section before operating or handling the system.</p>
 <tr>
 <td>Field operation</td>
 <td>Enclosed shoes, gloves</td>
-<td>Protection from terrain and fauna</td>
+<td>Protects from rough terrain and fauna</td>
 </tr>
 <tr>
 <td>Soldering / prototyping</td>
 <td>Safety glasses, fume extraction mask</td>
-<td>Use in ventilated area only</td>
+<td>Use in a ventilated area only</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>⚠️ <strong>Never operate the system near open liquids, flammable materials, or in heavy rain.</strong></p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Never operate the system near open liquids, flammable materials, or in heavy rain unless the payload is safely enclosed and waterproofed.</p>
+</div>
 <hr />
 <h2 id="3-pre-use-safety-checklist">3. Pre-Use Safety Checklist<a class="headerlink" href="#3-pre-use-safety-checklist" title="Permanent link">&para;</a></h2>
 <table>
@@ -528,57 +556,117 @@ All users must read this section before operating or handling the system.</p>
 </tr>
 <tr>
 <td>Grounding</td>
-<td>Confirm all metal frames are grounded</td>
+<td>Confirm all modules share a common GND</td>
 <td>☐</td>
 </tr>
 <tr>
 <td>Firmware</td>
-<td>Confirm latest firmware version installed</td>
+<td>Confirm latest version installed</td>
 <td>☐</td>
 </tr>
 <tr>
-<td>Wi-Fi</td>
-<td>Test connection stability to host PC</td>
+<td>Wi-Fi link</td>
+<td>Test connection to host PC</td>
 <td>☐</td>
 </tr>
 <tr>
 <td>Environment</td>
-<td>Clear of obstacles, dry surface</td>
+<td>Ensure workspace is clear, stable, and dry</td>
 <td>☐</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>Complete this checklist before every session. Document any faults in the logbook.</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Complete this checklist before every session.<br />
+Record any faults or irregularities before operation to ask for support.</p>
+</div>
 <hr />
-<h2 id="4-safe-startup-procedure">4. Safe Startup Procedure<a class="headerlink" href="#4-safe-startup-procedure" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Verify power supply voltage: <strong>12 V DC ±5%</strong>.  </li>
-<li>Connect tethered power to regulator before turning on host PC.  </li>
-<li>Power on the Raspberry Pi via the switch.  </li>
-<li>Launch the host GUI only after the Pi has booted (see <a href="../operation/">Operation</a>).  </li>
-<li>Confirm video and telemetry links are live.</li>
-</ol>
-<blockquote>
-<p>🚦 The green LED on the payload indicates active status.</p>
-</blockquote>
-<hr />
-<h2 id="5-normal-operation-guidelines">5. Normal Operation Guidelines<a class="headerlink" href="#5-normal-operation-guidelines" title="Permanent link">&para;</a></h2>
+<h2 id="4-electrical-safety-and-handling">4. Electrical Safety and Handling<a class="headerlink" href="#4-electrical-safety-and-handling" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Do not physically move the camera assembly while powered; use GUI tilt controls.</li>
-<li>Maintain clear line-of-sight for the Wi-Fi link between Pi and host.</li>
-<li>Limit continuous operation to ≤ 2 hours before a 10-minute cooldown to prevent thermal buildup.</li>
-<li>Observe the <strong>system temperature indicator</strong> in the GUI; shut down if it exceeds <strong>65 °C</strong>.</li>
+<li>Always work on an <strong>electrostatic-safe mat</strong> when connecting or disconnecting hardware.  </li>
+<li><strong>Ground yourself</strong> using an antistatic wrist strap before handling the Raspberry Pi, camera, or sensor boards.  </li>
+<li><strong>Disconnect power</strong> before wiring, changing modules, or attaching the servo.  </li>
+<li>Double-check all power and ground wiring for <strong>continuity</strong> before powering on to prevent shorts.  </li>
+<li>Avoid touching connectors or exposed pins while powered.  </li>
+<li>Do not overload GPIO pins — check the pinout (see <a href="../electronics/">Electronics</a>) before connecting.  </li>
+<li>Keep liquids, tools, and metallic debris away from live circuits.  </li>
+<li>Use only the supplied <strong>12 V DC ± 5 % regulated power supply</strong>.  </li>
+<li>Never power the payload simultaneously via USB and barrel jack.  </li>
+<li>Ensure all wiring is enclosed and secured on the <strong>Vero board</strong>. Wires should be neatly tucked and insulated to prevent accidental contact with power rails.</li>
+</ul>
+<p align="center">
+  <img src="/assets/veroboard.png" alt="Example of safe Vero board wiring layout" width="600"/>
+  <br>
+  <em>Figure 1. Payload Vero board with safely routed and enclosed wiring</em>
+</p>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Keep your workspace clear. A misplaced screwdriver or loose wire can short terminals and permanently damage the board.</p>
+</div>
+<hr />
+<h2 id="5-safe-startup-procedure">5. Safe Startup Procedure<a class="headerlink" href="#5-safe-startup-procedure" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Verify the <strong>12 V supply voltage</strong> using a multimeter before connecting.  </li>
+<li>Plug the power lead into the barrel plug <strong>before</strong> turning on the host PC.  </li>
+<li>Wait ~30 seconds for the Pi to fully boot.  </li>
+<li>Launch the host GUI (see <a href="../operation/">Operation</a>).  </li>
+<li>Confirm that <strong>video</strong> and <strong>telemetry</strong> are active.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <strong>green LED</strong> on the payload indicates the system is powered and running.
+If any issues occur see <a href="../troubleshooting/">Troubleshooting</a>.</p>
+</div>
+<hr />
+<h2 id="6-normal-operation-guidelines">6. Normal Operation Guidelines<a class="headerlink" href="#6-normal-operation-guidelines" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Do not manually move the camera assembly while powered — use GUI tilt controls only.  </li>
+<li>Limit continuous operation to <strong>2 hours</strong>, followed by a <strong>10-minute cooldown</strong>.  </li>
+<li>Keep cables tidy and away from moving servo arms.  </li>
+<li>During field tests, ensure the chassis is stable and not on a slope or edge.  </li>
 </ul>
 <hr />
-<h2 id="6-shutdown-procedure">6. Shutdown Procedure<a class="headerlink" href="#6-shutdown-procedure" title="Permanent link">&para;</a></h2>
+<h2 id="7-shutdown-procedure">7. Shutdown Procedure<a class="headerlink" href="#7-shutdown-procedure" title="Permanent link">&para;</a></h2>
 <ol>
-<li>From the GUI, click <strong>Stop Stream</strong> to end all processes.  </li>
-<li>SSH into the Pi and execute:
-   ```
-   sudo shutdown now</li>
+<li>In the GUI, stop all active streams or data collection.  </li>
+<li>SSH into the Pi and execute:</li>
 </ol>
+<pre><code class="language-bash">sudo shutdown now
+</code></pre>
+<ol>
+<li>Once the Pi’s green LED turns off, disconnect the power lead.  </li>
+<li>Power off the host PC if testing is complete.  </li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Always disconnect the 12 V line <strong>last</strong> to prevent back-feeding the regulator.</p>
+</div>
+<hr />
+<h2 id="8-emergency-and-fault-response">8. Emergency and Fault Response<a class="headerlink" href="#8-emergency-and-fault-response" title="Permanent link">&para;</a></h2>
+<p><strong>Smoke, sparks, or overheating:</strong><br />
+- Immediately disconnect power at the source.<br />
+- Do <strong>not</strong> touch the system until all capacitors discharge.<br />
+- Report the fault and label the hardware as <em>out of service</em>.  </p>
+<p><strong>Electrical shock:</strong><br />
+- Cut power immediately.<br />
+- Seek medical attention and report to supervisor.  </p>
+<p><strong>Firmware freeze or unresponsive hardware:</strong><br />
+- Stop all processes via SSH (<code>pkill python3</code>).<br />
+- Power cycle only after at least <strong>10 seconds</strong> off time.  </p>
+<hr />
+<h2 id="9-maintenance">9. Maintenance<a class="headerlink" href="#9-maintenance" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Inspect wiring and connectors weekly for loose or corroded contacts.  </li>
+<li>Reapply thermal compound on regulators and CPU every 6 months if used regularly.  </li>
+<li>Keep firmware and dependencies updated via Git pull or <code>apt update</code>.  </li>
+<li>Store electronics in <strong>dry, antistatic packaging</strong> when not in use.  </li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Preventive maintenance reduces faults and ensures reliable operation in both lab and field settings.</p>
+</div>
 
 
 

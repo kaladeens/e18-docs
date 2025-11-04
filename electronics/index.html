@@ -329,9 +329,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#signal-connections" class="md-nav__link">
+  <a href="#gpio-and-signal-connections" class="md-nav__link">
     <span class="md-ellipsis">
-      Signal Connections
+      GPIO and Signal Connections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connection-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wiring Notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Verification
     </span>
   </a>
   
@@ -428,7 +455,7 @@
 
 
 <h1 id="electronics">Electronics<a class="headerlink" href="#electronics" title="Permanent link">&para;</a></h1>
-<p>The BushBot’s electronics system handles <strong>power regulation</strong>, <strong>signal routing</strong>, and <strong>actuation</strong>.</p>
+<p>The BushBot’s electronics system manages <strong>power regulation</strong>, <strong>sensor input</strong>, and <strong>actuator control</strong> for stable and efficient operation.</p>
 <hr />
 <h2 id="power-supply">Power Supply<a class="headerlink" href="#power-supply" title="Permanent link">&para;</a></h2>
 <table>
@@ -442,83 +469,112 @@
 <tbody>
 <tr>
 <td>Tethered supply</td>
-<td>12V</td>
-<td>Voltage regulator</td>
+<td>12 V</td>
+<td>Input to voltage regulation board</td>
 </tr>
 <tr>
 <td>Regulated output</td>
-<td>5V</td>
-<td>Raspberry Pi</td>
+<td>5 V</td>
+<td>Raspberry Pi Zero 2 W, servo motor</td>
 </tr>
 <tr>
 <td>Regulated output</td>
-<td>3.3V</td>
-<td>Microphone &amp; sensors</td>
+<td>3.3 V</td>
+<td>Logic-level shifter, LDR, and IR-filter control</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>⚠️ Ensure polarity is correct before powering. Reverse polarity may damage components.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Always confirm correct polarity before applying power.<br />
+Reverse polarity may permanently damage components.</p>
+</div>
+<p>The 12 V input is stepped down to 5 V and 3.3 V using a Pololu D24V25F5 regulator and LM317 linear regulator respectively.<br />
+This ensures stable operation of both high-current components (servo, logic drivers) and low-noise sensors (LDR, ADC).</p>
 <hr />
-<h2 id="signal-connections">Signal Connections<a class="headerlink" href="#signal-connections" title="Permanent link">&para;</a></h2>
+<h2 id="gpio-and-signal-connections">GPIO and Signal Connections<a class="headerlink" href="#gpio-and-signal-connections" title="Permanent link">&para;</a></h2>
+<p>All peripherals are connected through the Raspberry Pi Zero 2 W’s GPIO header as shown below.</p>
 <table>
 <thead>
 <tr>
 <th>Component</th>
 <th>GPIO Pin</th>
-<th>Description</th>
+<th>Function</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Servo</td>
+<td><strong>Servo motor</strong></td>
 <td>GPIO 17</td>
 <td>PWM control</td>
+<td>Camera tilt ±30°</td>
 </tr>
 <tr>
-<td>Microphone</td>
-<td>GPIO 21</td>
+<td><strong>IR-filter driver (L9110)</strong></td>
+<td>GPIO 4 / GPIO 5</td>
+<td>Filter A / Filter B</td>
+<td>Controls electromagnet polarity</td>
+</tr>
+<tr>
+<td><strong>LDR (Light Sensor)</strong></td>
+<td>SPI0 (CE0, MOSI, MISO, SCLK)</td>
+<td>Via MCP3008 ADC</td>
+<td>Monitors ambient brightness</td>
+</tr>
+<tr>
+<td><strong>Motor driver (left)</strong></td>
+<td>GPIO 17, 27, 22</td>
+<td>IN1 / IN2 / EN</td>
+<td>Optional mobile-base control</td>
+</tr>
+<tr>
+<td><strong>Motor driver (right)</strong></td>
+<td>GPIO 23, 24, 25</td>
+<td>IN1 / IN2 / EN</td>
+<td>Optional mobile-base control</td>
+</tr>
+<tr>
+<td><strong>Microphone (USB)</strong></td>
+<td>—</td>
 <td>Audio input</td>
+<td>Captures environmental sound</td>
 </tr>
 <tr>
-<td>Light Sensor</td>
-<td>GPIO 4</td>
-<td>Brightness detection</td>
-</tr>
-<tr>
-<td>Camera</td>
-<td>CSI</td>
-<td>Video capture</td>
+<td><strong>Camera module</strong></td>
+<td>Pi CSI port</td>
+<td>Video feed</td>
+<td>IR-assisted module</td>
 </tr>
 </tbody>
 </table>
-<p>Use consistent wire colors (e.g., red = +V, black = GND, yellow = signal) for safety.</p>
 <hr />
-<h1 id="hardware-setup">Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permanent link">&para;</a></h1>
-<p>This section explains how to assemble and wire the <strong>BushBot payload</strong>.</p>
+<h2 id="connection-diagram">Connection Diagram<a class="headerlink" href="#connection-diagram" title="Permanent link">&para;</a></h2>
+<p>Use the image below as a reference when wiring your payload.<br />
+Each GPIO pin is clearly labelled for the servo, motor drivers, light sensor, and IR-filter interface.</p>
+<p><img alt="Pinout diagram" src="../assets/pinout.png" /><br />
+<em>Figure 1. Raspberry Pi Zero 2 W pin mapping and BushBot peripheral connections.</em></p>
 <hr />
-<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<h2 id="wiring-notes">Wiring Notes<a class="headerlink" href="#wiring-notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Raspberry Pi Zero 2W</li>
-<li>Camera Module (IR-assisted)</li>
-<li>Microphone module</li>
-<li>Servo motor (±30° camera tilt)</li>
-<li>Power regulation board (12V → 5V/3.3V)</li>
-<li>Wi-Fi communication interface</li>
+<li>When connecting components, work on an <strong>electrostatic-safe mat</strong> to avoid damage.  </li>
+<li>Use consistent wire colours: <strong>red = V+</strong>, <strong>black = GND</strong>, <strong>yellow/white = signal</strong>.  </li>
+<li>Make sure all modules share a <strong>common GND</strong> between the Pi, voltage regulators, and H-bridge.  </li>
+<li>Keep <strong>12 V power lines</strong> short to minimise voltage drop.  </li>
+<li>Secure servo and motor connectors firmly to prevent vibration-related disconnects.  </li>
+<li>Before powering on, <strong>check continuity between power and ground</strong> to ensure there are <strong>no shorts</strong> — this can save your board from frying.</li>
 </ul>
 <hr />
-<h2 id="assembly-steps">Assembly Steps<a class="headerlink" href="#assembly-steps" title="Permanent link">&para;</a></h2>
+<h2 id="quick-verification">Quick Verification<a class="headerlink" href="#quick-verification" title="Permanent link">&para;</a></h2>
+<p>Once powered, run these checks to confirm that everything is working as expected:</p>
 <ol>
-<li><strong>Mount the camera</strong> securely on the front bracket.  </li>
-<li><strong>Connect the servo motor</strong> to the camera gimbal using M2 screws.  </li>
-<li><strong>Wire the peripherals</strong>:</li>
-<li>Camera ribbon → Pi camera port</li>
-<li>Microphone → GPIO pins</li>
-<li>Servo signal → PWM GPIO</li>
-<li>Power input → voltage regulator</li>
-<li><strong>Secure the payload</strong> to the R03 robot chassis using designated mounting points.</li>
+<li>Measure the <strong>5 V</strong> and <strong>3.3 V</strong> rails with a multimeter to confirm stable voltage levels.  </li>
+<li>Move the camera tilt through its <strong>−30° ↔ +30°</strong> range and ensure it clears the CSI ribbon without strain.  </li>
+<li>Confirm the <strong>IR filter</strong> toggles correctly under light and dark conditions (or when manually switched in the GUI).  </li>
+<li>Run <code>python utils.py</code> to verify that all hardware interfaces — <strong>GPIO</strong>, <strong>SPI</strong>, <strong>USB</strong>, and <strong>ADC</strong> — are correctly detected and responsive.</li>
 </ol>
+<hr />
+<p>This configuration ensures stable communication between the sensors, actuators, and processing units while maintaining low noise and reliable performance in field conditions.</p>
 
 
 

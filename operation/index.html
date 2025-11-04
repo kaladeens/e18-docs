@@ -361,9 +361,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-view-and-monitor" class="md-nav__link">
+  <a href="#1-watch-and-listen" class="md-nav__link">
     <span class="md-ellipsis">
-      1. View and Monitor
+      1. Watch and Listen
     </span>
   </a>
   
@@ -379,15 +379,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#manual-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manual Commands
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#3-ir-filter-modes" class="md-nav__link">
     <span class="md-ellipsis">
       3. IR Filter Modes
@@ -397,18 +388,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-interpret-data" class="md-nav__link">
+  <a href="#4-reading-the-data" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Interpret Data
+      4. Reading the Data
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-logging-and-data-recording" class="md-nav__link">
+  <a href="#5-recording-sessions" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Logging and Data Recording
+      5. Recording Sessions
     </span>
   </a>
   
@@ -499,38 +490,40 @@
 <h1 id="operation-guide">Operation Guide<a class="headerlink" href="#operation-guide" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Startup Information</p>
-<p>Ensure that the <strong>Raspberry Pi payload</strong> is powered on and running the main application <strong>before</strong> attempting to connect.<br />
-On startup, the servo will automatically move to its <strong>neutral (0°) position</strong> — keep hands clear during this motion.</p>
+<p>Make sure the <strong>Raspberry Pi payload</strong> is powered on and running the main app <strong>before</strong> connecting.<br />
+When it starts up, the servo moves to its <strong>neutral (0°) position</strong> — keep hands clear while it does.</p>
 </div>
 <hr />
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The <strong>BushBot Control GUI</strong> provides a single interface to monitor, control, and analyse the system in real time.<br />
-When launched, the application automatically connects to the Raspberry Pi payload and begins streaming <strong>live video, audio, and telemetry</strong> data.</p>
-<p>The GUI integrates several major components:</p>
+<p>The <strong>BushBot Control GUI</strong> is your main dashboard for watching, controlling, and recording the system in real time.<br />
+Once opened, it automatically connects to the Raspberry Pi and starts streaming <strong>video, audio, and telemetry</strong>.</p>
+<p>Main features include:</p>
 <p><strong>🎥 Video Feed</strong><br />
-Displays real-time footage captured from the Pi camera.  </p>
+Shows the live camera view from the Pi.</p>
 <p><strong>🔊 Audio Stream</strong><br />
-Plays sound directly from the onboard microphone.  </p>
-<p><strong>🧠 AI Detection Modules</strong><br />
-- Object detection via <strong>YOLOv11</strong>, which identifies and labels animals within the camera frame.<br />
-- Environmental audio classification using <strong>PANNs-inference</strong>, which identifies animal calls and notable acoustic events.  </p>
-<p><strong>📈 Telemetry Monitor</strong><br />
-Displays live CPU usage, memory, and light-level data from the payload.  </p>
-<p><strong>🎮 Control Interface</strong><br />
-Allows full manual control of the payload, including camera tilt, IR filter, and optional base-movement controls if connected to a mobile platform.</p>
+Plays live audio from the USB microphone.</p>
+<p><strong>🧠 AI Detection</strong><br />
+- <strong>YOLOv11s</strong> for spotting animals on video with bounding boxes and confidence scores.<br />
+- <strong>PANNs-Inference ensemble</strong> (five models combined) for identifying animal sounds with confidence scores.</p>
+<p><strong>📈 Telemetry</strong><br />
+Displays live <strong>CPU</strong>, <strong>memory</strong>, <strong>FPS</strong>, and <strong>light level (LDR)</strong> readings from the payload.</p>
+<p><strong>🎮 Controls</strong><br />
+Lets you adjust <strong>camera tilt</strong>, switch <strong>IR filter modes</strong>, and move the base if it’s connected.</p>
 <hr />
 <h2 id="what-you-can-do">What You Can Do<a class="headerlink" href="#what-you-can-do" title="Permanent link">&para;</a></h2>
-<h3 id="1-view-and-monitor">1. View and Monitor<a class="headerlink" href="#1-view-and-monitor" title="Permanent link">&para;</a></h3>
-<p>When the GUI launches, it automatically starts:</p>
+<h3 id="1-watch-and-listen">1. Watch and Listen<a class="headerlink" href="#1-watch-and-listen" title="Permanent link">&para;</a></h3>
+<p>When the GUI opens, it automatically starts:</p>
 <ul>
-<li><strong>Live camera video</strong> on the main display window  </li>
-<li><strong>Live audio playback</strong> from the payload microphone  </li>
-<li><strong>Real-time telemetry updates</strong> in the side panel  </li>
+<li>The <strong>live camera feed</strong>  </li>
+<li><strong>Audio playback</strong> from the payload  </li>
+<li><strong>Telemetry updates</strong> showing CPU, memory, FPS, and LDR readings  </li>
 </ul>
-<p>Detected animals will appear as <strong>bounding boxes</strong> in the video feed with confidence scores, while <strong>audio detections</strong> (e.g., <em>frog</em>, <em>bat</em>, <em>duck</em>) will appear in the top-left overlay of the GUI.</p>
+<p>Detected animals appear as boxes with labels and confidence scores.<br />
+Detected sounds (like <em>kangaroo</em>, <em>bat</em>, or <em>snake</em>) pop up in the top corner of the window.</p>
+<p>If the connection drops, the GUI will <strong>try to reconnect automatically</strong> — no restart needed.</p>
 <hr />
 <h3 id="2-control-the-payload">2. Control the Payload<a class="headerlink" href="#2-control-the-payload" title="Permanent link">&para;</a></h3>
-<p>If the payload is mounted on a mobile base, motion can be controlled directly via keyboard or GUI controls:</p>
+<p>Use either the on-screen buttons or your keyboard to control movement and camera tilt.</p>
 <table>
 <thead>
 <tr>
@@ -544,8 +537,8 @@ Allows full manual control of the payload, including camera tilt, IR filter, and
 <td style="text-align: left;">Move forward, left, backward, right</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Q / E</strong></td>
-<td style="text-align: left;">Increase / Decrease maximum movement speed</td>
+<td style="text-align: left;"><strong>Q / E or GUI speed slider</strong></td>
+<td style="text-align: left;">Increase / Decrease motor speed</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>V</strong></td>
@@ -553,69 +546,86 @@ Allows full manual control of the payload, including camera tilt, IR filter, and
 </tr>
 <tr>
 <td style="text-align: left;"><strong>R / F</strong></td>
-<td style="text-align: left;">Adjust servo tilt (−30° to +30°)</td>
+<td style="text-align: left;">Tilt camera up / down (−30° to +30°)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>IR Filter Toggle</strong></td>
-<td style="text-align: left;">Switch between filtered and unfiltered (manual mode)</td>
+<td style="text-align: left;">Switch filter mode manually</td>
 </tr>
 </tbody>
 </table>
-<h3 id="manual-commands">Manual Commands<a class="headerlink" href="#manual-commands" title="Permanent link">&para;</a></h3>
-<p>All control commands are sent asynchronously to ensure smooth, low-latency response.</p>
+<p>All controls respond quickly with minimal delay.</p>
+<p><strong>Dead-man switch:</strong><br />
+The robot only moves while you hold a key.<br />
+Letting go stops motion instantly, keeping it safe and easy to handle.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Manual Command Input</p>
+<p>These commands can also be sent manually through the text box on the right side of the GUI.<br />
+This is handy for quick testing or debugging individual functions.</p>
+</div>
+<pre><code>stop        – immediately stop all motors  
+set_servo   – set the camera servo angle  
+set_v       – set left and right motor speeds  
+ir_mode     – switch IR filter mode (on / off / auto)  
+status      – request a system status update  
+get         – retrieve sensor data (e.g., LDR value)
+</code></pre>
 <hr />
 <h3 id="3-ir-filter-modes">3. IR Filter Modes<a class="headerlink" href="#3-ir-filter-modes" title="Permanent link">&para;</a></h3>
-<p>The onboard <strong>infrared (IR) filter</strong> improves image visibility and colour accuracy depending on lighting conditions.</p>
-<p><strong>🌞 Normal Mode (Filter ON)</strong><br />
-Used in bright daylight; the IR filter remains engaged to produce natural colour balance and prevent overexposure.</p>
-<p><strong>🌙 IR Mode (Filter OFF)</strong><br />
-Used in low-light or night-time conditions; the filter retracts, allowing infrared wavelengths to pass through — improving contrast and visibility in darkness.</p>
-<p><strong>⚙️ Auto Mode</strong><br />
-In <strong>automatic mode</strong>, the system continuously monitors light intensity from the onboard <strong>LDR sensor</strong>.<br />
-When brightness drops below a defined threshold, the IR filter disengages automatically; when light increases, it re-engages.<br />
-This ensures the best visibility without manual intervention.</p>
-<p>Users can manually override this behaviour at any time via the GUI’s <strong>IR Filter Toggle</strong> control.</p>
-<hr />
-<h3 id="4-interpret-data">4. Interpret Data<a class="headerlink" href="#4-interpret-data" title="Permanent link">&para;</a></h3>
+<p>The <strong>IR filter</strong> helps the camera adapt to lighting:</p>
 <ul>
-<li><strong>Objects:</strong> Green boxes with detected species labels (e.g., <em>kangaroo</em>, <em>bird</em>, <em>fox</em>)  </li>
-<li><strong>Audio Events:</strong> Predicted sound class and confidence shown in GUI overlays  </li>
-<li><strong>Telemetry Panel:</strong> Updates CPU, memory, and FPS values in real time  </li>
+<li><strong>🌞 Normal Mode</strong> – Filter on, for bright daylight and true colours.  </li>
+<li><strong>🌙 IR Mode</strong> – Filter off, for better vision in low light.  </li>
+<li><strong>⚙️ Auto Mode</strong> – Switches automatically based on the <strong>LDR sensor</strong> brightness.  </li>
 </ul>
-<p>These combined visual and audio cues allow for simultaneous observation of wildlife activity in the field.</p>
+<p>You can change modes anytime through the GUI.</p>
 <hr />
-<h3 id="5-logging-and-data-recording">5. Logging and Data Recording<a class="headerlink" href="#5-logging-and-data-recording" title="Permanent link">&para;</a></h3>
-<p>Both the <strong>Raspberry Pi</strong> and <strong>Host PC</strong> maintain detailed runtime logs and data capture files to support analysis, troubleshooting, and experiment documentation.</p>
-<p><strong>📜 Event Logging</strong><br />
-- The system automatically records <strong>key runtime events</strong> such as:<br />
-  - Payload connection and disconnection events<br />
-  - Command transmissions from host to payload<br />
-  - AI model initialisation and sensor startup<br />
-  - Reconnect attempts and recovery notifications<br />
-- Logs are timestamped and stored locally on both devices:
-  - <strong>Raspberry Pi:</strong> <code>/path/to/e18/rpi/logs/</code><br />
-  - <strong>Host PC:</strong> <code>/path/to/e18/host/logs/</code></p>
-<p><strong>🎬 Data Recording Mode</strong><br />
-The GUI provides a <strong>Start Recording</strong> button to capture a complete observation session:<br />
-- Saves <strong>synchronised video + audio</strong> feed from the payload.<br />
-- All <strong>AI detections</strong> (object and audio) are simultaneously written to a <strong>CSV file</strong>, including:
+<h3 id="4-reading-the-data">4. Reading the Data<a class="headerlink" href="#4-reading-the-data" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Visual detections:</strong> Animal name and confidence score shown on-screen.  </li>
+<li><strong>Audio detections:</strong> Label and confidence displayed in the top-right corner.  </li>
+<li><strong>Telemetry:</strong> CPU, memory, FPS, and LDR readings update live.  </li>
+<li><strong>Logs:</strong> Connection and transmission messages appear in the GUI log window — but these are <strong>not saved</strong> to a file.  They’re displayed only during runtime to help monitor communication and system status.</li>
+</ul>
+<p>This gives a complete view of what the system sees, hears, and reports in real time.</p>
+<hr />
+<h3 id="5-recording-sessions">5. Recording Sessions<a class="headerlink" href="#5-recording-sessions" title="Permanent link">&para;</a></h3>
+<p>Press <strong>Start Data Collection</strong> to begin a recording session.<br />
+Press <strong>Stop Data Collection</strong> when you’re done.</p>
+<p>When recording is active:
+- <strong>Video and audio</strong> streams are captured together.<br />
+- <strong>AI detections</strong> (from YOLOv11s and PANNs) are written to a <strong>CSV file</strong>, including:<br />
   - Timestamp<br />
-  - Detection type (Object / Audio)<br />
-  - Label (e.g., “kangaroo”, “birdsong”)<br />
-  - Confidence score<br />
-  - Frame index or audio chunk ID<br />
-- Recordings are stored in the <code>e18/host/recordings/</code> folder with session-based timestamps (e.g., <code>session_2025-11-02_1430/</code>).</p>
-<p>This allows each field session to be replayed, audited, and analysed offline — combining <strong>multimodal data</strong> (video, audio, detections, and system telemetry) in a single package.</p>
+  - Detection type (Video / Audio)<br />
+  - Label<br />
+  - Confidence score  </p>
+<p>When you stop recording, the files are saved automatically in:<br />
+<code>e18/host/bushbot_gui_v2/session_YYYY-MM-DD_HHMM/</code></p>
+<p>Each session folder contains:
+- Recorded <strong>video (.mp4)</strong><br />
+- Recorded <strong>audio (.wav)</strong><br />
+- <strong>Detections CSV log</strong> with all identified species and confidence values  </p>
+<p>You can replay, review, or analyse these sessions later for reports or testing documentation.</p>
 <hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>At a glance, the GUI provides:
-- Instant access to live wildlife <strong>video</strong> and <strong>audio</strong><br />
-- Intelligent <strong>object</strong> and <strong>sound recognition</strong><br />
-- Configurable <strong>IR filter</strong> for day/night visibility<br />
-- Full <strong>manual control</strong> of servo, filter, and movement<br />
-- <strong>Event logging</strong> and <strong>data recording</strong> for full experiment traceability<br />
-- Real-time <strong>system telemetry</strong></p>
-<p>BushBot is designed to be <strong>autonomous, modular, and extendable</strong>, enabling both real-time monitoring and comprehensive post-session analysis from a single unified interface.</p>
+<p>The BushBot GUI lets you:</p>
+<ul>
+<li>Watch and listen to <strong>live feeds</strong>  </li>
+<li>See real-time <strong>animal detections</strong> and confidence levels  </li>
+<li>Use simple, responsive <strong>controls</strong> with built-in safety  </li>
+<li>Adjust or automate the <strong>IR filter</strong>  </li>
+<li>View <strong>system stats</strong> like CPU, memory, FPS, and light level  </li>
+<li>Track <strong>live logs</strong> in the GUI window (not saved to file)  </li>
+<li>Record sessions with <strong>video, audio, and detection logs</strong> saved for later analysis  </li>
+</ul>
+<p>BushBot is built to be clear, responsive, and reliable — perfect for both real-time monitoring and post-session review.</p>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Powering Down</p>
+<p>After each session, close the GUI and follow the <strong>shutdown steps</strong> in the <a href="../safety/">Safety Manual</a><br />
+to safely power off the Raspberry Pi and prevent SD card corruption.</p>
+</div>
 
 
 

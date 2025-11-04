@@ -635,7 +635,7 @@ sudo ./setup.sh
 ssh {username}@bushbot.local
 cd /path/to/e18/rpi
 chmod +x run.sh
-sudo ./run.sh
+./run.sh
 </code></pre>
 <p>The Pi now begins streaming video, audio, and telemetry to the host PC.</p>
 <div class="admonition danger">
@@ -679,7 +679,7 @@ python -m venv venv
 <p>This section must be done <strong>exactly as described</strong> — using the wrong terminal or skipping environment activation will <strong>break the GUI build</strong>.<br />
 - Use the <strong>MSYS2 MinGW 64-bit</strong> terminal (<strong>purple prompt</strong>, starts with <code>MINGW64</code>), not PowerShell or CMD, when specified.<br />
 - Ensure your <strong>virtual environment is activated</strong> (<code>(venv)</code> visible before your prompt).<br />
-- If you miss either condition, <strong>PyGObject will not install</strong>, and video streaming will fail.</p>
+- If you miss either condition, <strong>PyGObject will not install</strong>, and video streaming will fail and gui will not run.</p>
 </div>
 <hr />
 <h4 id="install-msys2-and-update-core-packages">Install MSYS2 and Update Core Packages<a class="headerlink" href="#install-msys2-and-update-core-packages" title="Permanent link">&para;</a></h4>

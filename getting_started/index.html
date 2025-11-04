@@ -278,7 +278,7 @@
         <li class="md-nav__item">
   <a href="#safety-first" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚠️ Safety First
+      Safety First
     </span>
   </a>
   
@@ -287,7 +287,7 @@
         <li class="md-nav__item">
   <a href="#what-youll-need" class="md-nav__link">
     <span class="md-ellipsis">
-      🧰 What You’ll Need
+      What You’ll Need
     </span>
   </a>
   
@@ -296,7 +296,7 @@
         <li class="md-nav__item">
   <a href="#quick-tip" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 Quick Tip
+      Quick Tip
     </span>
   </a>
   
@@ -323,17 +323,17 @@
         <li class="md-nav__item">
   <a href="#quick-start-pre-built-system" class="md-nav__link">
     <span class="md-ellipsis">
-      🚀 Quick Start (Pre-Built System)
+      Quick Start (Pre-Built System)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🚀 Quick Start (Pre-Built System)">
+    <nav class="md-nav" aria-label="Quick Start (Pre-Built System)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#for-advanced-users" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚙️ For Advanced Users
+      For Advanced Users
     </span>
   </a>
   
@@ -491,21 +491,21 @@
 <p>This guide walks you through setting up both the <strong>Raspberry Pi Zero 2W</strong> and the <strong>Host Control PC</strong> to bring BushBot online for the first time.</p>
 <div class="admonition info">
 <p class="admonition-title">Before You Begin</p>
-<h3 id="safety-first">⚠️ Safety First<a class="headerlink" href="#safety-first" title="Permanent link">&para;</a></h3>
+<h3 id="safety-first">Safety First<a class="headerlink" href="#safety-first" title="Permanent link">&para;</a></h3>
 <p>BushBot contains <strong>powered servos and live electronics</strong> — handle with care.<br />
 Before operating:
 - Inspect all cables, connectors, and the power supply for wear or damage.<br />
 - Ensure the workspace is clear of liquids, debris, or metallic objects.<br />
 - Review the full <a href="../safety/">Safety Manual</a> for PPE, electrical precautions, and shutdown procedures.  </p>
-<h3 id="what-youll-need">🧰 What You’ll Need<a class="headerlink" href="#what-youll-need" title="Permanent link">&para;</a></h3>
+<h3 id="what-youll-need">What You’ll Need<a class="headerlink" href="#what-youll-need" title="Permanent link">&para;</a></h3>
 <ul>
 <li>1× Raspberry Pi Zero 2W (pre-flashed with the <strong>BushBot project image</strong>)  </li>
 <li>12 V DC regulated power supply (≥ 2 A)  </li>
-<li>Host PC with Python 3.11 + Git installed  </li>
+<li>Host PC with required dependencies </li>
 <li>Stable Wi-Fi network (2.4 GHz recommended)  </li>
 </ul>
-<h3 id="quick-tip">💡 Quick Tip<a class="headerlink" href="#quick-tip" title="Permanent link">&para;</a></h3>
-<p>Keep the system tethered with a long wire to avoid tripping hazards.</p>
+<h3 id="quick-tip">Quick Tip<a class="headerlink" href="#quick-tip" title="Permanent link">&para;</a></h3>
+<p>If using a tether with the system use a long wire to avoid tripping hazards.</p>
 </div>
 <hr />
 <h2 id="configuration-overview">Configuration Overview<a class="headerlink" href="#configuration-overview" title="Permanent link">&para;</a></h2>
@@ -524,7 +524,7 @@ Before operating:
 </tr>
 <tr>
 <td><strong>Full BushBot Robot</strong></td>
-<td>Integrates the payload with the R03 robotic base for mobile field testing. Includes additional connections for chassis power and communication.</td>
+<td>Integrates the payload with the robotic base for mobile field testing. Includes additional connections for chassis power and communication.</td>
 </tr>
 </tbody>
 </table>
@@ -607,7 +607,7 @@ You can then connect from the host PC using:</p>
 <pre><code>ssh {username}@bushbot.local
 </code></pre>
 <hr />
-<h2 id="quick-start-pre-built-system">🚀 Quick Start (Pre-Built System)<a class="headerlink" href="#quick-start-pre-built-system" title="Permanent link">&para;</a></h2>
+<h2 id="quick-start-pre-built-system">Quick Start (Pre-Built System)<a class="headerlink" href="#quick-start-pre-built-system" title="Permanent link">&para;</a></h2>
 <p>If you are <strong>not developing or rebuilding from source</strong>, and simply want to <strong>run the standard BushBot system</strong>, follow this minimal setup procedure.</p>
 <p>Once both the <strong>Raspberry Pi Zero 2 W</strong> and the <strong>Host Control PC</strong> are powered on and connected to the same Wi-Fi network:</p>
 <ol>
@@ -617,7 +617,7 @@ You can then connect from the host PC using:</p>
 <pre><code>cd path/to/e18/rpi
 sudo ./setup.sh
 # After the automatic reboot:
-sudo ./run.sh
+./run.sh
 </code></pre>
 <ol>
 <li><strong>On the Host PC:</strong><br />
@@ -629,7 +629,7 @@ bushbot_gui.exe
 <p>If both systems were flashed and configured using the provided <strong>BushBot image</strong> and <strong>release package</strong>, no additional installation is required.<br />
 Within a few seconds of startup, the <strong>GUI will automatically connect</strong> and display live video, audio, and telemetry streams from the Pi.</p>
 <hr />
-<h3 id="for-advanced-users">⚙️ For Advanced Users<a class="headerlink" href="#for-advanced-users" title="Permanent link">&para;</a></h3>
+<h3 id="for-advanced-users">For Advanced Users<a class="headerlink" href="#for-advanced-users" title="Permanent link">&para;</a></h3>
 <p>If you plan to <strong>build BushBot from source</strong>, modify dependencies, or run a custom configuration,<br />
 refer to the detailed instructions in <a href="../software-setup/">Software Setup</a>.</p>
 <p>That section covers:
@@ -639,9 +639,9 @@ refer to the detailed instructions in <a href="../software-setup/">Software Setu
 - Building the GUI and services manually for full control over the system</p>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
-<li>For troubleshooting connection or power issues, see <a href="../troubleshooting/">Troubleshooting</a>.  </li>
 <li>For daily use and operational modes, see <a href="../operation/">Operation</a>.</li>
 <li>For detailed dependency overview and setup, see <a href="../software-setup/">Software Setup</a>.  </li>
+<li>For troubleshooting connection or power issues, see <a href="../troubleshooting/">Troubleshooting</a>.  </li>
 </ul>
 
 
