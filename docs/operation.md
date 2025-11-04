@@ -1,134 +1,138 @@
 # Operation Guide
 
 !!! info "Startup Information"
-    Ensure that the **Raspberry Pi payload** is powered on and running the main application **before** attempting to connect.  
-    On startup, the servo will automatically move to its **neutral (0°) position** — keep hands clear during this motion.
+    Make sure the **Raspberry Pi payload** is powered on and running the main app **before** connecting.  
+    When it starts up, the servo moves to its **neutral (0°) position** — keep hands clear while it does.
 
 ---
 
 ## Overview
 
-The **BushBot Control GUI** provides a single interface to monitor, control, and analyse the system in real time.  
-When launched, the application automatically connects to the Raspberry Pi payload and begins streaming **live video, audio, and telemetry** data.
+The **BushBot Control GUI** is your main dashboard for watching, controlling, and recording the system in real time.  
+Once opened, it automatically connects to the Raspberry Pi and starts streaming **video, audio, and telemetry**.
 
-The GUI integrates several major components:
+Main features include:
 
 **🎥 Video Feed**  
-Displays real-time footage captured from the Pi camera.  
+Shows the live camera view from the Pi.
 
 **🔊 Audio Stream**  
-Plays sound directly from the onboard microphone.  
+Plays live audio from the USB microphone.
 
-**🧠 AI Detection Modules**  
-- Object detection via **YOLOv11**, which identifies and labels animals within the camera frame.  
-- Environmental audio classification using **PANNs-inference**, which identifies animal calls and notable acoustic events.  
+**🧠 AI Detection**  
+- **YOLOv11s** for spotting animals on video with bounding boxes and confidence scores.  
+- **PANNs-Inference ensemble** (five models combined) for identifying animal sounds.
 
-**📈 Telemetry Monitor**  
-Displays live CPU usage, memory, and light-level data from the payload.  
+**📈 Telemetry**  
+Displays live **CPU**, **memory**, **FPS**, and **light level (LDR)** readings from the payload.
 
-**🎮 Control Interface**  
-Allows full manual control of the payload, including camera tilt, IR filter, and optional base-movement controls if connected to a mobile platform.
+**🎮 Controls**  
+Lets you adjust **camera tilt**, switch **IR filter modes**, and move the base if it’s connected.
 
 ---
 
 ## What You Can Do
 
-### 1. View and Monitor
+### 1. Watch and Listen
 
-When the GUI launches, it automatically starts:
+When the GUI opens, it automatically starts:
 
-- **Live camera video** on the main display window  
-- **Live audio playback** from the payload microphone  
-- **Real-time telemetry updates** in the side panel  
+- The **live camera feed**  
+- **Audio playback** from the payload  
+- **Telemetry updates** showing CPU, memory, FPS, and LDR readings  
 
-Detected animals will appear as **bounding boxes** in the video feed with confidence scores, while **audio detections** (e.g., *frog*, *bat*, *duck*) will appear in the top-left overlay of the GUI.
+Detected animals appear as boxes with labels and confidence scores.  
+Detected sounds (like *kangaroo*, *bat*, or *snake*) pop up in the top corner of the window.
+
+If the connection drops, the GUI will **try to reconnect automatically** — no restart needed.
 
 ---
 
 ### 2. Control the Payload
 
-If the payload is mounted on a mobile base, motion can be controlled directly via keyboard or GUI controls:
+Use either the on-screen buttons or your keyboard to control movement and camera tilt.
 
 | Key | Action |
 |:--|:--|
 | **W / A / S / D** | Move forward, left, backward, right |
-| **Q / E** | Increase / Decrease maximum movement speed |
+| **Q / E Or on board slider** | Increase / Decrease speed |
 | **V** | Emergency stop |
-| **R / F** | Adjust servo tilt (−30° to +30°) |
-| **IR Filter Toggle** | Switch between filtered and unfiltered (manual mode) |
+| **R / F** | Tilt camera up / down (−30° to +30°) |
+| **IR Filter Toggle** | Switch filter mode manually |
 
-### Manual Commands
+All controls respond quickly with minimal delay.
 
-All control commands are sent asynchronously to ensure smooth, low-latency response.
+**Dead-man switch:**  
+The robot only moves while you hold a key.  
+Letting go stops motion instantly, keeping it safe and easy to handle.
 
 ---
+
+!!! tip "Manual Command Input"
+    These commands can also be sent manually through the text box on the right side of the GUI.  
+    This is handy for quick testing or debugging individual functions.
+
+    ```
+    stop        – immediately stop all motors  
+    set_servo   – set the camera servo angle  
+    set_v       – set left and right motor speeds  
+    ir_mode     – switch IR filter mode (on / off / auto)  
+    status      – request a system status update  
+    get         – retrieve sensor data (e.g., LDR value)
+    ```
 
 ### 3. IR Filter Modes
 
-The onboard **infrared (IR) filter** improves image visibility and colour accuracy depending on lighting conditions.
+The **IR filter** helps the camera adapt to lighting:
 
-**🌞 Normal Mode (Filter ON)**  
-Used in bright daylight; the IR filter remains engaged to produce natural colour balance and prevent overexposure.
+- **🌞 Normal Mode** – Filter on, for bright daylight and true colours.  
+- **🌙 IR Mode** – Filter off, for better vision in low light.  
+- **⚙️ Auto Mode** – Switches automatically based on the **LDR sensor** brightness.  
 
-**🌙 IR Mode (Filter OFF)**  
-Used in low-light or night-time conditions; the filter retracts, allowing infrared wavelengths to pass through — improving contrast and visibility in darkness.
-
-**⚙️ Auto Mode**  
-In **automatic mode**, the system continuously monitors light intensity from the onboard **LDR sensor**.  
-When brightness drops below a defined threshold, the IR filter disengages automatically; when light increases, it re-engages.  
-This ensures the best visibility without manual intervention.
-
-Users can manually override this behaviour at any time via the GUI’s **IR Filter Toggle** control.
+You can change modes anytime through the GUI.
 
 ---
 
-### 4. Interpret Data
+### 4. Reading the Data
 
-- **Objects:** Green boxes with detected species labels (e.g., *kangaroo*, *bird*, *fox*)  
-- **Audio Events:** Predicted sound class and confidence shown in GUI overlays  
-- **Telemetry Panel:** Updates CPU, memory, and FPS values in real time  
+- **Visual detections:** Animal name and confidence score shown on-screen.  
+- **Audio detections:** Label and confidence displayed in the-top right corner.  
+- **Telemetry:** CPU, memory, FPS, and LDR readings update live.  
+- **Logs:** Connection messages are shown in the GUI window (not saved).
 
-These combined visual and audio cues allow for simultaneous observation of wildlife activity in the field.
+This gives a full picture of what the system sees and hears during operation.
 
 ---
 
-### 5. Logging and Data Recording
+### 5. Recording Sessions
 
-Both the **Raspberry Pi** and **Host PC** maintain detailed runtime logs and data capture files to support analysis, troubleshooting, and experiment documentation.
+Press **Start Recording** to save a full observation session.
 
-**📜 Event Logging**  
-- The system automatically records **key runtime events** such as:  
-  - Payload connection and disconnection events  
-  - Command transmissions from host to payload  
-  - AI model initialisation and sensor startup  
-  - Reconnect attempts and recovery notifications  
-- Logs are timestamped and stored locally on both devices:
-  - **Raspberry Pi:** `/path/to/e18/rpi/logs/`  
-  - **Host PC:** `/path/to/e18/host/logs/`
-
-**🎬 Data Recording Mode**  
-The GUI provides a **Start Recording** button to capture a complete observation session:  
-- Saves **synchronised video + audio** feed from the payload.  
-- All **AI detections** (object and audio) are simultaneously written to a **CSV file**, including:
+It records:
+- **Video and audio** together  
+- **AI detections** in a CSV file with:
   - Timestamp  
-  - Detection type (Object / Audio)  
-  - Label (e.g., “kangaroo”, “birdsong”)  
-  - Confidence score  
-  - Frame index or audio chunk ID  
-- Recordings are stored in the `e18/host/recordings/` folder with session-based timestamps (e.g., `session_2025-11-02_1430/`).
+  - Type (Object / Audio)  
+  - Label  
+  - Confidence  
+  - Frame or audio ID  
 
-This allows each field session to be replayed, audited, and analysed offline — combining **multimodal data** (video, audio, detections, and system telemetry) in a single package.
+Files are saved in  
+`e18/host/recordings/session_YYYY-MM-DD_HHMM/`.
+
+You can replay these later for analysis or reporting.
 
 ---
 
 ## Summary
 
-At a glance, the GUI provides:
-- Instant access to live wildlife **video** and **audio**  
-- Intelligent **object** and **sound recognition**  
-- Configurable **IR filter** for day/night visibility  
-- Full **manual control** of servo, filter, and movement  
-- **Event logging** and **data recording** for full experiment traceability  
-- Real-time **system telemetry**
+The BushBot GUI lets you:
 
-BushBot is designed to be **autonomous, modular, and extendable**, enabling both real-time monitoring and comprehensive post-session analysis from a single unified interface.
+- Watch and listen to **live feeds**  
+- See real-time **animal detections** and confidence levels  
+- Use simple, responsive **controls** with built-in safety  
+- Adjust or automate the **IR filter**  
+- Track **system stats** like CPU, memory, FPS, and light  
+- Record sessions with full **video, audio, and detection logs**  
+
+BushBot is built to be clear, responsive, and easy to use — perfect for real-time monitoring or later review.
