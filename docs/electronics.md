@@ -48,11 +48,12 @@ Each GPIO pin is clearly labelled for the servo, motor drivers, light sensor, an
 
 ## Wiring Notes
 
+- When connecting components, work on an **electrostatic-safe mat** to avoid damage.  
 - Use consistent wire colours: **red = V+**, **black = GND**, **yellow/white = signal**.  
-- Ensure all ground lines share a **common GND** between the Pi, voltage regulators, and H-bridge modules.  
-- Keep the **12 V power lines** as short as possible to reduce voltage drop.  
-- Mount the servo and motor connectors securely to prevent vibration-related disconnects.  
-- Before powering on, **check continuity between power and ground** to make sure there are **no shorts** — this can save your board from frying.
+- Make sure all modules share a **common GND** between the Pi, voltage regulators, and H-bridge.  
+- Keep **12 V power lines** short to minimise voltage drop.  
+- Secure servo and motor connectors firmly to prevent vibration-related disconnects.  
+- Before powering on, **check continuity between power and ground** to ensure there are **no shorts** — this can save your board from frying.
 
 ---
 
