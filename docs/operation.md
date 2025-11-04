@@ -72,14 +72,14 @@ Letting go stops motion instantly, keeping it safe and easy to handle.
     These commands can also be sent manually through the text box on the right side of the GUI.  
     This is handy for quick testing or debugging individual functions.
 
-    ```
-    stop        – immediately stop all motors  
-    set_servo   – set the camera servo angle  
-    set_v       – set left and right motor speeds  
-    ir_mode     – switch IR filter mode (on / off / auto)  
-    status      – request a system status update  
-    get         – retrieve sensor data (e.g., LDR value)
-    ```
+```
+stop        – immediately stop all motors  
+set_servo   – set the camera servo angle  
+set_v       – set left and right motor speeds  
+ir_mode     – switch IR filter mode (on / off / auto)  
+status      – request a system status update  
+get         – retrieve sensor data (e.g., LDR value)
+```
 
 ### 3. IR Filter Modes
 
@@ -109,6 +109,7 @@ This gives a full picture of what the system sees and hears during operation.
 Press **Start Recording** to save a full observation session.
 
 It records:
+
 - **Video and audio** together  
 - **AI detections** in a CSV file with:
   - Timestamp  
