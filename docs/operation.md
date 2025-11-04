@@ -81,6 +81,8 @@ status      – request a system status update
 get         – retrieve sensor data (e.g., LDR value)
 ```
 
+---
+
 ### 3. IR Filter Modes
 
 The **IR filter** helps the camera adapt to lighting:
@@ -96,32 +98,38 @@ You can change modes anytime through the GUI.
 ### 4. Reading the Data
 
 - **Visual detections:** Animal name and confidence score shown on-screen.  
-- **Audio detections:** Label and confidence displayed in the-top right corner.  
+- **Audio detections:** Label and confidence displayed in the top-right corner.  
 - **Telemetry:** CPU, memory, FPS, and LDR readings update live.  
-- **Logs:** Connection messages are shown in the GUI window (not saved).
+- **Logs:** Connection and transmission messages appear in the GUI log window — but these are **not saved** to a file.  
+  They’re displayed only during runtime to help monitor communication and system status.
 
-This gives a full picture of what the system sees and hears during operation.
+This gives a complete view of what the system sees, hears, and reports in real time.
 
 ---
 
 ### 5. Recording Sessions
 
-Press **Start Recording** to save a full observation session.
+Press **Start Data Collection** to begin a recording session.  
+Press **Stop Data Collection** when you’re done.
 
-It records:
-
-- **Video and audio** together  
-- **AI detections** in a CSV file with:
+When recording is active:
+- **Video and audio** streams are captured together.  
+- **AI detections** (from YOLOv11s and PANNs) are written to a **CSV file**, including:  
   - Timestamp  
-  - Type (Object / Audio)  
+  - Detection type (Object / Audio)  
   - Label  
-  - Confidence  
-  - Frame or audio ID  
+  - Confidence score  
+  - Frame index or audio segment ID  
 
-Files are saved in  
-`e18/host/recordings/session_YYYY-MM-DD_HHMM/`.
+When you stop recording, the files are saved automatically in:  
+`e18/host/recordings/session_YYYY-MM-DD_HHMM/`
 
-You can replay these later for analysis or reporting.
+Each session folder contains:
+- Recorded **video (.mp4)**  
+- Recorded **audio (.wav)**  
+- **Detections CSV log** with all identified species and confidence values  
+
+You can replay, review, or analyse these sessions later for reports or testing documentation.
 
 ---
 
@@ -133,7 +141,8 @@ The BushBot GUI lets you:
 - See real-time **animal detections** and confidence levels  
 - Use simple, responsive **controls** with built-in safety  
 - Adjust or automate the **IR filter**  
-- Track **system stats** like CPU, memory, FPS, and light  
-- Record sessions with full **video, audio, and detection logs**  
+- View **system stats** like CPU, memory, FPS, and light level  
+- Track **live logs** in the GUI window (not saved to file)  
+- Record sessions with **video, audio, and detection logs** saved for later analysis  
 
-BushBot is built to be clear, responsive, and easy to use — perfect for real-time monitoring or later review.
+BushBot is built to be clear, responsive, and reliable — perfect for both real-time monitoring and post-session review.
