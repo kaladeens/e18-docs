@@ -55,7 +55,7 @@ Use either the on-screen buttons or your keyboard to control movement and camera
 | Key | Action |
 |:--|:--|
 | **W / A / S / D** | Move forward, left, backward, right |
-| **Q / E Or on board slider** | Increase / Decrease speed |
+| **Q / E or GUI speed slider** | Increase / Decrease motor speed |
 | **V** | Emergency stop |
 | **R / F** | Tilt camera up / down (−30° to +30°) |
 | **IR Filter Toggle** | Switch filter mode manually |
