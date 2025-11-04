@@ -20,16 +20,13 @@ If problems persist, **repeat the full [Software Setup](software-setup.md)** pro
 | **Pi fails to reconnect after disconnect** | Network drop or static IP conflict | Make sure both host and Pi are on the same Wi-Fi network. Reboot both if necessary. |
 | **Host or Pi logs show repeated reconnect attempts** | IP mismatch or DNS resolution error | Edit the host IP in `constants.py` to match the Pi’s assigned address. |
 | **Recording button unresponsive or missing outputs** | FFmpeg not installed correctly | Reinstall **FFmpeg** for Windows (via MSYS2 or prebuilt binary) and restart the GUI. |
-| **Executable fails to launch** | Missing DLLs or incomplete PyInstaller build | Rebuild the executable inside the venv: `pyinstaller --noconsole --icon=icons/in.ico gui_main.py`. |
 | **Sensors or motors not responding** | Wiring or pin mismatch | Double-check all GPIO connections. Refer to [electronics.md](electronics.md) for correct pin assignments. |
 | **Camera or LDR not working properly** | Incorrect SPI or CSI wiring | Inspect the camera ribbon orientation and ADC wiring for the LDR. Refer to [electronics.md](electronics.md) for the exact SPI pin map. |
 
 ---
 
 !!! tip "General Fix"
-If you encounter repeated errors, dependency issues, or broken imports —  
-**re-run the entire [Software Setup](software-setup.md)** guide step-by-step.  
-Most problems are caused by skipped commands, incorrect terminals, or missing environment variables.
+     If you encounter repeated errors, dependency issues, or broken imports —  **re-run the entire [Software Setup](software-setup.md)** guide step-by-step. Most problems are caused by skipped commands, incorrect terminals, or missing environment variables.
 
 ---
 
@@ -49,7 +46,10 @@ libcamera-hello --list-cameras
 # Verify Python environment
 python --version
 which python
+```
 
+**On the Host Pc**
+```bash
 # Test if GUI can reach payload
 ping bushbot.local
 ```

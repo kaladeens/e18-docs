@@ -21,7 +21,7 @@ Plays live audio from the USB microphone.
 
 **🧠 AI Detection**  
 - **YOLOv11s** for spotting animals on video with bounding boxes and confidence scores.  
-- **PANNs-Inference ensemble** (five models combined) for identifying animal sounds.
+- **PANNs-Inference ensemble** (five models combined) for identifying animal sounds with confidence scores.
 
 **📈 Telemetry**  
 Displays live **CPU**, **memory**, **FPS**, and **light level (LDR)** readings from the payload.
@@ -100,8 +100,7 @@ You can change modes anytime through the GUI.
 - **Visual detections:** Animal name and confidence score shown on-screen.  
 - **Audio detections:** Label and confidence displayed in the top-right corner.  
 - **Telemetry:** CPU, memory, FPS, and LDR readings update live.  
-- **Logs:** Connection and transmission messages appear in the GUI log window — but these are **not saved** to a file.  
-  They’re displayed only during runtime to help monitor communication and system status.
+- **Logs:** Connection and transmission messages appear in the GUI log window — but these are **not saved** to a file.  They’re displayed only during runtime to help monitor communication and system status.
 
 This gives a complete view of what the system sees, hears, and reports in real time.
 
@@ -116,13 +115,12 @@ When recording is active:
 - **Video and audio** streams are captured together.  
 - **AI detections** (from YOLOv11s and PANNs) are written to a **CSV file**, including:  
   - Timestamp  
-  - Detection type (Object / Audio)  
+  - Detection type (Video / Audio)  
   - Label  
   - Confidence score  
-  - Frame index or audio segment ID  
 
 When you stop recording, the files are saved automatically in:  
-`e18/host/recordings/session_YYYY-MM-DD_HHMM/`
+`e18/host/bushbot_gui_v2/session_YYYY-MM-DD_HHMM/`
 
 Each session folder contains:
 - Recorded **video (.mp4)**  
@@ -146,3 +144,8 @@ The BushBot GUI lets you:
 - Record sessions with **video, audio, and detection logs** saved for later analysis  
 
 BushBot is built to be clear, responsive, and reliable — perfect for both real-time monitoring and post-session review.
+
+---
+!!! warning "Powering Down"
+    After each session, close the GUI and follow the **shutdown steps** in the [Safety Manual](safety.md)  
+    to safely power off the Raspberry Pi and prevent SD card corruption.

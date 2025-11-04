@@ -14,11 +14,11 @@ This guide walks you through setting up both the **Raspberry Pi Zero 2W** and th
     ### What You’ll Need
     - 1× Raspberry Pi Zero 2W (pre-flashed with the **BushBot project image**)  
     - 12 V DC regulated power supply (≥ 2 A)  
-    - Host PC with Python 3.11 + Git installed  
+    - Host PC with required dependencies 
     - Stable Wi-Fi network (2.4 GHz recommended)  
 
     ### Quick Tip
-    Keep the system tethered with a long wire to avoid tripping hazards.
+    If using a tether with the system use a long wire to avoid tripping hazards.
 
 ---
 
@@ -29,7 +29,7 @@ BushBot can be operated in two main configurations:
 | Configuration | Description |
 |----------------|-------------|
 | **Sensor Payload Only** | Operates the camera, microphone, IR filter, and tilt mechanism independently. Suitable for bench testing and AI model verification. |
-| **Full BushBot Robot** | Integrates the payload with the R03 robotic base for mobile field testing. Includes additional connections for chassis power and communication. |
+| **Full BushBot Robot** | Integrates the payload with the robotic base for mobile field testing. Includes additional connections for chassis power and communication. |
 
 Regardless of which version you received, **the setup process for the payload remains identical**.  
 Only the power routing and connector layout differ slightly when integrated into the robotic base.
@@ -129,7 +129,7 @@ Once both the **Raspberry Pi Zero 2 W** and the **Host Control PC** are powered 
 cd path/to/e18/rpi
 sudo ./setup.sh
 # After the automatic reboot:
-sudo ./run.sh
+./run.sh
 ```
 2. **On the Host PC:**  
    Launch the graphical control interface.  
@@ -155,7 +155,7 @@ That section covers:
 - Building the GUI and services manually for full control over the system
 
 ## Next Steps
-- For troubleshooting connection or power issues, see [Troubleshooting](troubleshooting.md).  
 - For daily use and operational modes, see [Operation](operation.md).
 - For detailed dependency overview and setup, see [Software Setup](software-setup.md).  
+- For troubleshooting connection or power issues, see [Troubleshooting](troubleshooting.md).  
 

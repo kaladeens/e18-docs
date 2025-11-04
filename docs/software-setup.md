@@ -85,7 +85,7 @@ After reboot:
 ssh {username}@bushbot.local
 cd /path/to/e18/rpi
 chmod +x run.sh
-sudo ./run.sh
+./run.sh
 ```
 
 The Pi now begins streaming video, audio, and telemetry to the host PC.
@@ -143,7 +143,7 @@ pip install -r requirements.txt
     This section must be done **exactly as described** — using the wrong terminal or skipping environment activation will **break the GUI build**.  
     - Use the **MSYS2 MinGW 64-bit** terminal (**purple prompt**, starts with `MINGW64`), not PowerShell or CMD, when specified.  
     - Ensure your **virtual environment is activated** (`(venv)` visible before your prompt).  
-    - If you miss either condition, **PyGObject will not install**, and video streaming will fail.
+    - If you miss either condition, **PyGObject will not install**, and video streaming will fail and gui will not run.
 
 ---
 

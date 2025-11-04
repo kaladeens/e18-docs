@@ -12,8 +12,9 @@ The BushBot’s electronics system manages **power regulation**, **sensor input*
 | Regulated output | 5 V | Raspberry Pi Zero 2 W, servo motor |
 | Regulated output | 3.3 V | Logic-level shifter, LDR, and IR-filter control |
 
-> ⚠️ **Warning:** Always confirm correct polarity before applying power.  
-> Reverse polarity may permanently damage components.
+!!! warning
+    Always confirm correct polarity before applying power.  
+    Reverse polarity may permanently damage components.
 
 The 12 V input is stepped down to 5 V and 3.3 V using a Pololu D24V25F5 regulator and LM317 linear regulator respectively.  
 This ensures stable operation of both high-current components (servo, logic drivers) and low-noise sensors (LDR, ADC).
@@ -29,8 +30,8 @@ All peripherals are connected through the Raspberry Pi Zero 2 W’s GPIO header 
 | **Servo motor** | GPIO 17 | PWM control | Camera tilt ±30° |
 | **IR-filter driver (L9110)** | GPIO 4 / GPIO 5 | Filter A / Filter B | Controls electromagnet polarity |
 | **LDR (Light Sensor)** | SPI0 (CE0, MOSI, MISO, SCLK) | Via MCP3008 ADC | Monitors ambient brightness |
-| **Motor driver (left)** | GPIO 16, 22, 13 | IN1 / IN2 / EN | Optional mobile-base control |
-| **Motor driver (right)** | GPIO 23, 24, 15 | IN1 / IN2 / EN | Optional mobile-base control |
+| **Motor driver (left)** | GPIO 17, 27, 22 | IN1 / IN2 / EN | Optional mobile-base control |
+| **Motor driver (right)** | GPIO 23, 24, 25 | IN1 / IN2 / EN | Optional mobile-base control |
 | **Microphone (USB)** | — | Audio input | Captures environmental sound |
 | **Camera module** | Pi CSI port | Video feed | IR-assisted module |
 
